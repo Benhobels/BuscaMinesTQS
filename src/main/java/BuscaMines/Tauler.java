@@ -1,4 +1,4 @@
-package MyTestingProject;
+package BuscaMines;
 
 import java.util.Random;
 
