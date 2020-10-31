@@ -57,14 +57,7 @@ public class Tauler {
 	
 	private void generarMatriu(int nFil,int nCol)
 	{
-		m_Matriu = new Casella[nFil][nCol];
-		/* COLOCAR CASELLES A 0
-		for(int i = 0; i < n_Files; i++)
-			for(int j = 0; j < n_Columnes; j++)
-				m_Matriu[i][j].setValor(0);
-		*/
-		
-		
+		m_Matriu = new Casella[nFil][nCol];		
 	}
 	
 	public Casella[][] getMatriu()
@@ -72,7 +65,7 @@ public class Tauler {
 		return m_Matriu;
 	}
 	
-	private void colocarMines()
+	/*private void colocarMines()
 	{
 		boolean minaFicada = false;
 		int filaMina = 0;
@@ -94,5 +87,5 @@ public class Tauler {
 			}
 			minaFicada = false;
 		}
-	}
+	}*/
 }

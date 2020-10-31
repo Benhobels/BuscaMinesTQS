@@ -41,6 +41,30 @@ public class TaulerTest {
 		assertEquals(T.getMatriu(),m);
 	}
 	
+	@Test
+	public void testGenerarTablero() {
+		GeneradorRandom rand = new MockGeneradorRandom();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(1);
+		// comprovamos casilla fila 4 columna 6 --> mina
+		assertEquals(T.getValorCasella(3, 5), 9);
+		// comprovamos casilla fila 4 columna 7
+		assertEquals(T.getValorCasella(3, 6), 3);
+		// comprovamos cassilla fila 4 columna 5
+		assertEquals(T.getValorCasella(3, 4), 1);
+		// comprovamos casilla fila 5 columna 6
+		assertEquals(T.getValorCasella(4, 5), 1);
+		// comprovamos casilla fila 5 columna 7
+		assertEquals(T.getValorCasella(4, 6), 2);
+		// comprovamos cassilla fila 5 columna 5
+		assertEquals(T.getValorCasella(4, 4), 1);
+		// comprovamos casilla fila 3 columna 6
+		assertEquals(T.getValorCasella(2, 5), 2);
+		// comprovamos casilla fila 3 columna 7
+		assertEquals(T.getValorCasella(2, 6), 1);
+		// comprovamos cassilla fila 3 columna 5
+		assertEquals(T.getValorCasella(2, 4), 2);
+	}
 	/*
 	@Test
 	public void testGenerarMatriuMines() {
