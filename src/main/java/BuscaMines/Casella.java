@@ -1,4 +1,4 @@
-package MyTestingProject;
+package BuscaMines;
 
 public class Casella {
 	
