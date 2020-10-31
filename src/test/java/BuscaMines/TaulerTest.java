@@ -83,21 +83,4 @@ public class TaulerTest {
 		// comprovamos cassilla fila 3 columna 5
 		assertEquals(T.getValorCasella(2, 4), 2);
 	}
-	/*
-	@Test
-	public void testGenerarMatriuMines() {
-		Tauler T = new Tauler();
-		T.generarTauler(1);
-		Casella[][] m = T.getMatriu(); 
-		int contadorMines = 0;
-		for(int i = 0; i < T.getFiles(); i++)
-			for(int j = 0; j < T.getColumnes(); j++)
-			{
-				if(m[i][j].getValor() == 1)
-					contadorMines++;
-			}
-		assertEquals(40,contadorMines);
-	}
-	*/
-
 }

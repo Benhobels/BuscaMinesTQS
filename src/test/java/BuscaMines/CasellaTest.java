@@ -10,7 +10,7 @@ public class CasellaTest {
 	public void testSetCasellaMina() {
 	// Valor = 0...8 (numero minas alrededor), 9 (mina) 
 		Casella C = new Casella();
-		C.setValor(1);
+		C.setValor(9);
 		assertEquals(C.getValor(), 9);
 	}
 	
