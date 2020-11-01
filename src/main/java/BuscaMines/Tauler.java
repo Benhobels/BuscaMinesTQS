@@ -226,6 +226,13 @@ public class Tauler {
 					m_MatrizJugador[fila][col].setAbierta(true);
 					abrirBorde(fila,col);
 				}
+				//si se trata de una casilla central
+				else
+				{
+					m_MatrizJugador[fila][col].setAbierta(true);
+					abrirCentro(fila,col);
+				}
+					
 		}
 			
 		m_MatrizJugador[fila][col].setValor(0);
@@ -242,7 +249,6 @@ public class Tauler {
 				abrirCasilla(1, n_Columnas -1);
 				abrirCasilla(1, n_Columnas -2);
 			}
-			/*
 			//esquina superior izquierda
 			else
 				{
@@ -250,7 +256,6 @@ public class Tauler {
 					abrirCasilla(1, 0);
 					abrirCasilla(1, 1);
 				}
-			*/
 		}
 		else
 			if(fila == n_Filas-1)
@@ -262,7 +267,6 @@ public class Tauler {
 					abrirCasilla(n_Filas-2, n_Columnas-2);
 					abrirCasilla(n_Filas-1, n_Columnas-2);
 				}
-				/*
 				//esquina inferior izquierda
 				else
 				{
@@ -270,7 +274,6 @@ public class Tauler {
 					abrirCasilla(n_Filas -2, 1);
 					abrirCasilla(n_Filas -1, 1);
 				}
-				*/
 			}
 			
 		
@@ -307,7 +310,6 @@ public class Tauler {
 					abrirCasilla(fila -1, col);
 					abrirCasilla(fila -1, col -1);
 				}
-				/*
 				//borde izquierda
 				else
 					if(col == 0)
@@ -318,7 +320,7 @@ public class Tauler {
 						abrirCasilla(fila, col+1);
 						abrirCasilla(fila -1, col+1);
 					}
-					*/
+					
 					
 	}
 	
@@ -331,4 +333,17 @@ public class Tauler {
 	{
 		return m_MatrizJugador[fila][columna].getAbierta();
 	}
+	
+	private void abrirCentro(int fila, int col)
+	{
+		abrirCasilla(fila-1, col-1);
+		abrirCasilla(fila-1, col);
+		abrirCasilla(fila-1, col+1);
+		abrirCasilla(fila, col-1);
+		abrirCasilla(fila, col+1);
+		abrirCasilla(fila+1, col-1);
+		abrirCasilla(fila+1, col);
+		abrirCasilla(fila+1, col+1);
+	}
+	
 }
