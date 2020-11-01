@@ -129,4 +129,35 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(1, 1));
 	}
 	
+	@Test
+	public void testAbrirCasillaMedio() {
+		GeneradorRandom rand = new MockGeneradorRandom();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(2,1);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(2,1), 0);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertEquals(T.getValorCasillaAbierta(0,1), 1);
+		assertEquals(T.getValorCasillaAbierta(0,2), 0);
+		assertEquals(T.getValorCasillaAbierta(0,3), 2);
+		assertEquals(T.getValorCasillaAbierta(1,0), 1);
+		assertEquals(T.getValorCasillaAbierta(1,1), 1);
+		assertEquals(T.getValorCasillaAbierta(1,2), 0);
+		assertEquals(T.getValorCasillaAbierta(1,3), 2);
+		assertEquals(T.getValorCasillaAbierta(2,0), 0);
+		assertEquals(T.getValorCasillaAbierta(2,2), 0);
+		assertEquals(T.getValorCasillaAbierta(2,3), 1);
+		assertEquals(T.getValorCasillaAbierta(3,0), 0);
+		assertEquals(T.getValorCasillaAbierta(3,1), 1);
+		assertEquals(T.getValorCasillaAbierta(3,2), 1);
+		assertEquals(T.getValorCasillaAbierta(3,3), 1);
+		assertEquals(T.getValorCasillaAbierta(4,0), 0);
+		assertEquals(T.getValorCasillaAbierta(4,1), 1);
+		assertEquals(T.getValorCasillaAbierta(5,0), 1);
+		assertEquals(T.getValorCasillaAbierta(5,1), 2);
+		assertFalse(T.getCasillaAbierta(5, 2));
+		assertFalse(T.getCasillaAbierta(0, 0));
+	}
+	
 }
