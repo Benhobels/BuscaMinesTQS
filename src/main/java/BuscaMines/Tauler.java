@@ -319,6 +319,7 @@ public class Tauler {
 						abrirCasilla(fila -1, col+1);
 					}
 					*/
+					
 	}
 	
 	public int getValorCasillaAbierta(int fila, int columna)

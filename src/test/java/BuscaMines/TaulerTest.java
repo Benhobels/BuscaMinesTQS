@@ -115,4 +115,18 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(6, 6));
 	}
 	
+	@Test
+	public void testAbrirEsquinaSuperiorIzquierda() {
+		GeneradorRandom rand = new MockGeneradorRandom();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(0,0);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(0,0), 9);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertFalse(T.getCasillaAbierta(0, 1));
+		assertFalse(T.getCasillaAbierta(1, 0));
+		assertFalse(T.getCasillaAbierta(1, 1));
+	}
+	
 }
