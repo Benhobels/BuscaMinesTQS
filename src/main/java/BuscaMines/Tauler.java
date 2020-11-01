@@ -219,7 +219,7 @@ public class Tauler {
 				m_MatrizJugador[fila][col].setAbierta(true);
 				abrirEsquina(fila,col);
 			}
-			//borde superior
+			//si se trata de un borde
 			else 
 				if(fila == 0 || fila == n_Filas -1 || col == 0 || col == n_Columnas -1)
 				{
@@ -238,18 +238,47 @@ public class Tauler {
 			//esquina superior derecha
 			if(col == n_Columnas -1 )
 			{
-				abrirCasilla(0, (n_Columnas -2));
-				abrirCasilla(1, (n_Columnas -1));
-				abrirCasilla(1, (n_Columnas -2));
+				abrirCasilla(0, n_Columnas -2);
+				abrirCasilla(1, n_Columnas -1);
+				abrirCasilla(1, n_Columnas -2);
 			}
+			/*
+			//esquina superior izquierda
+			else
+				{
+					abrirCasilla(0, 1);
+					abrirCasilla(1, 0);
+					abrirCasilla(1, 1);
+				}
+			*/
 		}
+		else
+			if(fila == n_Filas-1)
+			{
+				//esquina inferior derecha
+				if(col == n_Columnas -1)
+				{
+					abrirCasilla(n_Filas-2, n_Columnas-1);
+					abrirCasilla(n_Filas-2, n_Columnas-2);
+					abrirCasilla(n_Filas-1, n_Columnas-2);
+				}
+				/*
+				//esquina inferior izquierda
+				else
+				{
+					abrirCasilla(n_Filas -2, 0);
+					abrirCasilla(n_Filas -2, 1);
+					abrirCasilla(n_Filas -1, 1);
+				}
+				*/
+			}
 			
 		
 	}
 	
 	private void abrirBorde(int fila, int col)
 	{
-		//fila superior
+		//borde superior
 		if(fila == 0)
 		{
 			abrirCasilla(0, col +1);
@@ -258,15 +287,38 @@ public class Tauler {
 			abrirCasilla(1, col);
 			abrirCasilla(1, col -1);
 		}
-		
-		if(col == n_Columnas -1)
-		{
-			abrirCasilla(fila -1, col);
-			abrirCasilla(fila -1, col -1);
-			abrirCasilla(fila, col -1);
-			abrirCasilla(fila +1, col);
-			abrirCasilla(fila +1, col -1);
-		}
+		//borde derecha
+		else
+			if(col == n_Columnas -1)
+			{
+				abrirCasilla(fila -1, col);
+				abrirCasilla(fila -1, col -1);
+				abrirCasilla(fila, col -1);
+				abrirCasilla(fila +1, col);
+				abrirCasilla(fila +1, col -1);
+			}
+			//borde inferior
+			else
+				if(fila == n_Filas -1)
+				{
+					abrirCasilla(fila, col +1);
+					abrirCasilla(fila, col -1);
+					abrirCasilla(fila -1, col +1);
+					abrirCasilla(fila -1, col);
+					abrirCasilla(fila -1, col -1);
+				}
+				/*
+				//borde izquierda
+				else
+					if(col == 0)
+					{
+						abrirCasilla(fila -1, col);
+						abrirCasilla(fila +1, col);
+						abrirCasilla(fila +1, col+1);
+						abrirCasilla(fila, col+1);
+						abrirCasilla(fila -1, col+1);
+					}
+					*/
 	}
 	
 	public int getValorCasillaAbierta(int fila, int columna)
