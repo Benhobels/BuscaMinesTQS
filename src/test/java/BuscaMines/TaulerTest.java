@@ -89,7 +89,7 @@ public class TaulerTest {
 		GeneradorRandom rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
-		T.abrirCasilla(fila,columna);
+		T.abrirCasilla(0,7);
 		//comprovamos que la casilla seleccionada se abre con el valor correcto
 		assertEquals(T.getValorCasillaAbierta(0,7), 0);
 		//comprovamos que el tablero se haya expandido correctamente
@@ -98,7 +98,7 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(1,5), 2);
 		assertEquals(T.getValorCasillaAbierta(1,6), 1);
 		assertEquals(T.getValorCasillaAbierta(1,7), 1);
-		assertNull(T.getValorCasillaAbierta(0,4));
+		assertFalse(T.getCasillaAbierta(0, 4));
 	}
-	}
+	
 }

@@ -7,6 +7,7 @@ public class Tauler {
 	private int n_Filas;
 	private int n_Minas;
 	private Casella[][] m_Matriz;
+	private Casella[][] m_MatrizJugador;
 	private static GeneradorRandom m_Rand;
 	
 	public Tauler()
@@ -15,6 +16,7 @@ public class Tauler {
 		int n_Filas = 0;
 		int n_Minas = 0;
 		Casella[][] m_Matriz = null;
+		Casella[][] m_MatrizJugador = null;
 		m_Rand = null;
 	}
 	
@@ -55,6 +57,7 @@ public class Tauler {
 			
 		}
 		generarMatriu(n_Filas,n_Columnas);
+		generarMatrizJugador(n_Filas,n_Columnas);
 		if(m_Rand != null) {
 			// preguntar si es necesario debido al nuevo constructor del Mock
 			colocarMinas();
@@ -77,6 +80,7 @@ public class Tauler {
 		int n_Filas = 0;
 		int n_Minas = 0;
 		Casella[][] m_Matriz = null;
+		Casella[][] m_MatrizJugador = null;
 		m_Rand = r;
 	}	
 	private void colocarMinas() {
@@ -183,5 +187,95 @@ public class Tauler {
 	
 	public int getValorCasella(int fila, int columna) {
 		return m_Matriz[fila][columna].getValor();
+	}
+	
+	private void generarMatrizJugador(int nFil,int nCol)
+	{
+		m_MatrizJugador = new Casella[nFil][nCol];
+		for(int i = 0; i < nFil; i++)
+			for(int j = 0; j < nCol; j++)
+				m_MatrizJugador[i][j] = new Casella();
+	}
+	
+	public void abrirCasilla(int fila, int col)
+	{
+	
+		//si el valor de la casilla seleccionada es diferente de 0
+		if(m_Matriz[fila][col].getValor() != 0)
+		{
+			if(m_MatrizJugador[fila][col].getAbierta() == false)
+			{
+				m_MatrizJugador[fila][col].setValor(m_Matriz[fila][col].getValor());
+				m_MatrizJugador[fila][col].setAbierta(true);
+			}
+			return;
+		}
+		
+		if(m_MatrizJugador[fila][col].getAbierta() == false)
+		{
+			//si se trata de una esquina
+			if((fila == 0 || fila == n_Filas - 1 ) && (col == 0 || col == n_Columnas -1))
+			{
+				m_MatrizJugador[fila][col].setAbierta(true);
+				abrirEsquina(fila,col);
+			}
+			//borde superior
+			else 
+				if(fila == 0 || fila == n_Filas -1 || col == 0 || col == n_Columnas -1)
+				{
+					m_MatrizJugador[fila][col].setAbierta(true);
+					abrirBorde(fila,col);
+				}
+		}
+			
+		m_MatrizJugador[fila][col].setValor(0);
+	}
+	
+	private void abrirEsquina(int fila, int col)
+	{
+		if(fila == 0)
+		{
+			//esquina superior derecha
+			if(col == n_Columnas -1 )
+			{
+				abrirCasilla(0, (n_Columnas -2));
+				abrirCasilla(1, (n_Columnas -1));
+				abrirCasilla(1, (n_Columnas -2));
+			}
+		}
+			
+		
+	}
+	
+	private void abrirBorde(int fila, int col)
+	{
+		//fila superior
+		if(fila == 0)
+		{
+			abrirCasilla(0, col +1);
+			abrirCasilla(0, col -1);
+			abrirCasilla(1, col +1);
+			abrirCasilla(1, col);
+			abrirCasilla(1, col -1);
+		}
+		
+		if(col == n_Columnas -1)
+		{
+			abrirCasilla(fila -1, col);
+			abrirCasilla(fila -1, col -1);
+			abrirCasilla(fila, col -1);
+			abrirCasilla(fila +1, col);
+			abrirCasilla(fila +1, col -1);
+		}
+	}
+	
+	public int getValorCasillaAbierta(int fila, int columna)
+	{
+		return m_MatrizJugador[fila][columna].getValor();
+	}
+	
+	public boolean getCasillaAbierta(int fila,int columna)
+	{
+		return m_MatrizJugador[fila][columna].getAbierta();
 	}
 }

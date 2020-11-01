@@ -4,12 +4,13 @@ public class MockGeneradorRandom implements GeneradorRandom{
     public Casella[][] generarMinas(int filas, int columnas, int minas) {
         Casella[][] matriz = new Casella[filas][columnas];
         
+        //Aquest bucle hauria de anar fora potser
         for(int i = 0; i < filas; i++) {
         	for(int j = 0; j < columnas; j++) {
         		matriz[i][j] = new Casella();
-        		matriz[i][j].setValor(0);
         	}
         }
+        
         
         matriz[0][0].setValor(9);
         matriz[0][4].setValor(9);
