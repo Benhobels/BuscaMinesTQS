@@ -4,10 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+// MockGeneradorTauler = utilizado para la estrategia TDD
+// MockBordesCoverage = utilizado para la estrategia Path Coverage de los bordes del tablero
+// MockEsquinasCoverage = utilizado para la estrategia Path Coverage de las esquinas del tablero
+
 public class TaulerTest {
 
+	// test necesarios para aplicar la estrategia TDD:
+	
+	// 1 - test para generar el tablero del nivel fácil
 	@Test
 	public void testGenerarTaulerFacil() {
+		
 		Tauler T = new Tauler();
 		T.generarTauler(0);
 		assertEquals(T.getFiles(), 8);
@@ -15,6 +23,7 @@ public class TaulerTest {
 		assertEquals(T.getNumMines(), 10);
 	}
 	
+	// 2- test para generar el tablero del nivel normal
 	@Test
 	public void testGenerarTaulerNormal() {
 		Tauler T = new Tauler();
@@ -24,6 +33,7 @@ public class TaulerTest {
 		assertEquals(T.getNumMines(), 40);
 	}
 	
+	// 3- test para generar el tablero del nivel difícil
 	@Test
 	public void testGenerarTaulerDificil() {
 		Tauler T = new Tauler();
@@ -33,6 +43,7 @@ public class TaulerTest {
 		assertEquals(T.getNumMines(), 99);
 	}
 	
+	// 4- test para generar la matriz que representa el tablero
 	@Test
 	public void testGenerarMatriu() {
 		Tauler T = new Tauler();
@@ -41,9 +52,10 @@ public class TaulerTest {
 		assertEquals(T.getMatriu(),m);
 	}
 	
+	// 5- test para colocar las minas dentro de la matriz (utilizamos MockGeneradorRandom)
 	@Test
 	public void testColocarMinas() {
-		GeneradorRandom rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		assertEquals(T.getValorCasella(0, 0), 9);
@@ -59,9 +71,10 @@ public class TaulerTest {
 		
 	}
 	
+	// 6- test para generar los numeros de alrededor de las minas
 	@Test
 	public void testGenerarTablero() {
-		GeneradorRandom rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		// comprovamos casilla fila 4 columna 6 --> mina
@@ -84,9 +97,10 @@ public class TaulerTest {
 		assertEquals(T.getValorCasella(2, 4), 2);
 	}
 	
+	// 7- test para abrir la esquina superior derecha (y su respectiva expansión)
 	@Test
 	public void testAbrirEsquinaSuperiorDerecha() {
-		GeneradorRandom rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(0,7);
@@ -101,9 +115,10 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(0, 4));
 	}
 	
+	// 8- test para abrir la esquina inferior derecha (no se debe expandir!)
 	@Test
 	public void testAbrirEsquinaInferiorDerecha() {
-		GeneradorRandom rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(7,7);
@@ -115,9 +130,10 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(6, 6));
 	}
 	
+	// 9- test para abrir esquina superior izquierda (y su respectiva expansión)
 	@Test
 	public void testAbrirEsquinaSuperiorIzquierda() {
-		GeneradorRandom rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(0,0);
@@ -129,9 +145,10 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(1, 1));
 	}
 	
+	// 10- test para abrir una casilla central (y su respectiva expansión)
 	@Test
 	public void testAbrirCasillaMedio() {
-		GeneradorRandom rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorRandom();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(2,1);
@@ -160,12 +177,14 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(0, 0));
 	}
 	
-	// a partir de aquí, generamos diferentes mocks con el fin de realizar path coverage
+	// Acto seguido, generamos diferentes mocks con el fin de realizar Path Coverage (y Decision Coverage)
 	
-	// este mock constará de minas en las esquinas y nos permitirá expandir los bordes restantes
+	// MockBordesCoverage: este mock constará de minas en las esquinas y nos permitirá expandir los bordes restantes
+	
+	// 11 - test para abrir una casilla del borde derecho (y comprovar su expansión)
 	@Test
 	public void TestPathCoverageBordeDerecha() {
-		GeneradorRandom rand = new MockPathCoverage();
+		GeneradorTablero rand = new MockBordesCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(3,7);
@@ -192,9 +211,10 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(2,3), 0);
 	}
 	
+	// 12- test para abrir casilla del borde inferior (y comprovar su expansión)
 	@Test 
 	public void TestPathCoverageBordeInferior() {
-		GeneradorRandom rand = new MockPathCoverage();
+		GeneradorTablero rand = new MockBordesCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(7,4);
@@ -214,9 +234,12 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(6,1), 2);
 	}
 	
+	// MockEsquinasCoverage: este mock no constará de minas en las esquinas y nos permitirá expandir estas
+	
+	// 13- test para abrir esquina inferior derecha (y comprovar su expansión) 
 	@Test
 	public void TestDecisionCoverageEsquinaInferiorDerecha() {
-		GeneradorRandom rand = new MockEsquinasCoverage();
+		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(7, 7);
@@ -237,9 +260,10 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(3,7), 0);
 	}
 	
+	// 14- test para abrir esquina inferior izquierda (y comprovar su expansión)
 	@Test
 	public void TestDecisionCoverageEsquinaInferiorIzquierda() {
-		GeneradorRandom rand = new MockEsquinasCoverage();
+		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(7, 0);
@@ -251,9 +275,10 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(7,1), 1);
 	}
 	
+	// 15- test para abrir esquina superior izquierda (y comprovar su expansión)
 	@Test
 	public void TestDecisionCoverageEsquinaSuperiorIzquierda() {
-		GeneradorRandom rand = new MockEsquinasCoverage();
+		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(0, 0);
@@ -266,4 +291,6 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(1,1), 1);
 		assertEquals(T.getValorCasillaAbierta(1,2), 2);
 	}
+	
+	////// algun test amb el real random
 }

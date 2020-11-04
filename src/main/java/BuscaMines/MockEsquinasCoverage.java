@@ -1,6 +1,7 @@
 package BuscaMines;
 
-public class MockEsquinasCoverage implements GeneradorRandom{
+//mock utilizado para realizar el Path Coverage y Decision Coverage de los esquinas restantes que no se han comprovado con TDD
+public class MockEsquinasCoverage implements GeneradorTablero{
 	public Casella[][] generarMinas(int filas, int columnas, int minas) {
         Casella[][] matriz = new Casella[filas][columnas];
         

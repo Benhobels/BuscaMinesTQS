@@ -8,7 +8,7 @@ public class Tauler {
 	private int n_Minas;
 	private Casella[][] m_Matriz;
 	private Casella[][] m_MatrizJugador;
-	private static GeneradorRandom m_Rand;
+	private static GeneradorTablero m_Rand;
 	
 	public Tauler()
 	{
@@ -46,15 +46,11 @@ public class Tauler {
 			n_Columnas = 16;
 			n_Minas = 40;
 			break;
-		case 2://DIFICIL
+		default://DIFICIL
 			n_Filas = 16;
 			n_Columnas = 30;
 			n_Minas = 99;
 			break;
-		default:
-			// missatge d'error o algo --- try catch
-			break;
-			
 		}
 		generarMatriu(n_Filas,n_Columnas);
 		generarMatrizJugador(n_Filas,n_Columnas);
@@ -74,7 +70,7 @@ public class Tauler {
 		return m_Matriz;
 	}
 	
-	public Tauler(GeneradorRandom r)
+	public Tauler(GeneradorTablero r)
 	{
 		n_Columnas = 0;
 		n_Filas = 0;
@@ -92,6 +88,7 @@ public class Tauler {
 	}
 	
 	private void colocarEsquinas() {
+		// se encarga de generar los valores de alrededor de las minas situadas en las esquinas
 		if(m_Matriz[0][0].getValor() > 8) {
 			// esquina superior izquierda
 			m_Matriz[0][1].setValor(m_Matriz[0][1].getValor()+1);
@@ -119,6 +116,7 @@ public class Tauler {
 	}
 	
 	private void colocarBordes() {
+		// se encarga de generar los valores de alrededor de las minas situadas en los bordes
 		for(int j = 1; j < n_Columnas-1; j++) {
 			if(m_Matriz[0][j].getValor() > 8) {
 				// borde superior (sin esquinas)
@@ -200,11 +198,12 @@ public class Tauler {
 	public void abrirCasilla(int fila, int col)
 	{
 	
-		//si el valor de la casilla seleccionada es diferente de 0
 		if(m_Matriz[fila][col].getValor() != 0)
 		{
+			//si el valor de la casilla seleccionada es diferente de 0
 			if(m_MatrizJugador[fila][col].getAbierta() == false)
 			{
+				// si la casilla aún no se ha abierto
 				m_MatrizJugador[fila][col].setValor(m_Matriz[fila][col].getValor());
 				m_MatrizJugador[fila][col].setAbierta(true);
 			}
@@ -213,115 +212,109 @@ public class Tauler {
 		
 		if(m_MatrizJugador[fila][col].getAbierta() == false)
 		{
-			//si se trata de una esquina
 			if((fila == 0 || fila == n_Filas - 1 ) && (col == 0 || col == n_Columnas -1))
 			{
+				//si se trata de una esquina
 				m_MatrizJugador[fila][col].setAbierta(true);
 				abrirEsquina(fila,col);
 			}
-			//si se trata de un borde
 			else 
+			{
 				if(fila == 0 || fila == n_Filas -1 || col == 0 || col == n_Columnas -1)
 				{
+					//si se trata de un borde
 					m_MatrizJugador[fila][col].setAbierta(true);
 					abrirBorde(fila,col);
 				}
-				//si se trata de una casilla central
 				else
 				{
+					//si se trata de una casilla central
 					m_MatrizJugador[fila][col].setAbierta(true);
 					abrirCentro(fila,col);
 				}
-					
-		}
-			
+			}			
+		}	
 		m_MatrizJugador[fila][col].setValor(0);
 	}
 	
 	private void abrirEsquina(int fila, int col)
 	{
-		if(fila == 0)
+		// se encarga de abrir las casillas que rodean una casilla que se encuentra en una esquina del tablero
+		if(fila == 0) 
 		{
-			//esquina superior derecha
-			if(col == n_Columnas -1 )
+			if(col == n_Columnas -1 ) 
 			{
-				abrirCasilla(0, n_Columnas -2);
-				abrirCasilla(1, n_Columnas -1);
-				abrirCasilla(1, n_Columnas -2);
+				//esquina superior derecha
+				abrirCasilla(fila, col -1);
+				abrirCasilla(fila+1, col);
+				abrirCasilla(fila+1, col-1);
 			}
-			//esquina superior izquierda
-			else
-				{
-					abrirCasilla(0, 1);
-					abrirCasilla(1, 0);
-					abrirCasilla(1, 1);
-				}
+			else 
+			{
+				//esquina superior izquierda
+				abrirCasilla(fila, col+1);
+				abrirCasilla(fila+1, col);
+				abrirCasilla(fila+1, col+1);
+			}
 		}
-		else
-			if(fila == n_Filas-1)
+		else 
+		{
+			if(col == n_Columnas -1)
 			{
 				//esquina inferior derecha
-				if(col == n_Columnas -1)
-				{
-					abrirCasilla(n_Filas-2, n_Columnas-1);
-					abrirCasilla(n_Filas-2, n_Columnas-2);
-					abrirCasilla(n_Filas-1, n_Columnas-2);
-				}
-				//esquina inferior izquierda
-				else
-				{
-					abrirCasilla(n_Filas -2, 0);
-					abrirCasilla(n_Filas -2, 1);
-					abrirCasilla(n_Filas -1, 1);
-				}
+				abrirCasilla(fila-1, col);
+				abrirCasilla(fila-1, col-1);
+				abrirCasilla(fila, col-1);
 			}
-			
-		
+			else
+			{
+				//esquina inferior izquierda
+				abrirCasilla(fila-1, col);
+				abrirCasilla(fila-1, col+1);
+				abrirCasilla(fila, col+1);
+			}
+		}	
 	}
 	
 	private void abrirBorde(int fila, int col)
 	{
-		//borde superior
+		// se encarga de abrir las casillas que rodean una casilla de algun borde del tablero
 		if(fila == 0)
 		{
-			abrirCasilla(0, col +1);
-			abrirCasilla(0, col -1);
-			abrirCasilla(1, col +1);
-			abrirCasilla(1, col);
-			abrirCasilla(1, col -1);
+			//borde superior
+			abrirCasilla(fila, col +1); 
+			abrirCasilla(fila, col -1); 
+			abrirCasilla(fila+1, col +1);
+			abrirCasilla(fila+1, col);
+			abrirCasilla(fila+1, col -1);
 		}
-		//borde derecha
-		else
-			if(col == n_Columnas -1)
-			{
-				abrirCasilla(fila -1, col);
-				abrirCasilla(fila -1, col -1);
-				abrirCasilla(fila, col -1);
-				abrirCasilla(fila +1, col);
-				abrirCasilla(fila +1, col -1);
-			}
+		else if(col == n_Columnas -1)
+		{
+			//borde derecha
+			abrirCasilla(fila -1, col);
+			abrirCasilla(fila -1, col -1);
+			abrirCasilla(fila, col -1);
+			abrirCasilla(fila +1, col);
+			abrirCasilla(fila +1, col -1);
+		}
+		else if(fila == n_Filas -1)
+		{
 			//borde inferior
-			else
-				if(fila == n_Filas -1)
-				{
-					abrirCasilla(fila, col +1);
-					abrirCasilla(fila, col -1);
-					abrirCasilla(fila -1, col +1);
-					abrirCasilla(fila -1, col);
-					abrirCasilla(fila -1, col -1);
-				}
-				//borde izquierda
-				else
-					if(col == 0)
-					{
-						abrirCasilla(fila -1, col);
-						abrirCasilla(fila +1, col);
-						abrirCasilla(fila +1, col+1);
-						abrirCasilla(fila, col+1);
-						abrirCasilla(fila -1, col+1);
-					}
-					
-					
+			abrirCasilla(fila, col +1);
+			abrirCasilla(fila, col -1);
+			abrirCasilla(fila -1, col +1);
+			abrirCasilla(fila -1, col);
+			abrirCasilla(fila -1, col -1);
+		}
+		else
+		{
+			//borde izquierda
+			abrirCasilla(fila -1, col);
+			abrirCasilla(fila +1, col);
+			abrirCasilla(fila +1, col+1);
+			abrirCasilla(fila, col+1);
+			abrirCasilla(fila -1, col+1);
+		}									
 	}
 	
 	public int getValorCasillaAbierta(int fila, int columna)
@@ -336,6 +329,7 @@ public class Tauler {
 	
 	private void abrirCentro(int fila, int col)
 	{
+		// se encarga de abrir las casillas que rodean una casilla central
 		abrirCasilla(fila-1, col-1);
 		abrirCasilla(fila-1, col);
 		abrirCasilla(fila-1, col+1);
