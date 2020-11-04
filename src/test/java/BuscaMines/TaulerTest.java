@@ -295,62 +295,62 @@ public class TaulerTest {
 	//Test con generacion de tableros aleatorios siguiendo TDD
 	
 	// 16- test para crear tablero nivel facil aleatorio
-	@Test
-	public void TestRandomTableroFacil() {
-		GeneradorTablero rand = new TableroRandom();
-		Tauler T = new Tauler(rand);
-		T.generarTauler(0);
-		Casella[][] Matriz= T.getMatriu();
-		int contadorMinas = 0;
-		for(int i= 0; i < T.getFiles(); i++)
-			for(int j= 0; j < T.getColumnes(); j++)
-			{
-				if(Matriz[i][j].getValor() == 9)
-					contadorMinas++;
-			}
-		assertEquals(10, contadorMinas);
+    @Test
+    public void TestRandomTableroFacil() {
+        GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(0);
+        Casella[][] Matriz= T.getMatriu();
+        int contadorMinas = 0;
+        for(int i= 0; i < T.getFiles(); i++)
+            for(int j= 0; j < T.getColumnes(); j++)
+            {
+                if(Matriz[i][j].getValor() == 9)
+                    contadorMinas++;
+            }
+        assertEquals(10, contadorMinas);
 
-	}
-	
-	// 17- test para crear tablero nivel normal aleatorio
-	@Test
-	public void TestRandomTableroNormal() {
-		GeneradorTablero rand = new TableroRandom();
-		Tauler T = new Tauler(rand);
-		T.generarTauler(1);
-		Casella[][] Matriz= T.getMatriu();
-		int contadorMinas = 0;
-		for(int i= 0; i < T.getFiles(); i++)
-		{
-			for(int j= 0; j < T.getColumnes(); j++)
-			{
-				if(Matriz[i][j].getValor() == 9)
-				{
-					contadorMinas++;
-				}
-			}
-			
-		}
-		
-		assertEquals(40, contadorMinas);
+    }
 
-	}
-	
-	// 18- test para crear tablero nivel dificil aleatorio
-	@Test
-	public void TestRandomTableroDificil() {
-		GeneradorTablero rand = new TableroRandom();
-		Tauler T = new Tauler(rand);
-		T.generarTauler(2);
-		Casella[][] Matriz= T.getMatriu();
-		int contadorMinas = 0;
-		for(int i= 0; i < T.getFiles(); i++)
-			for(int j= 0; j < T.getColumnes(); j++)
-			{
-				if(Matriz[i][j].getValor() == 9)
-					contadorMinas++;
-			}
-		assertEquals(99, contadorMinas);
+    // 17- test para crear tablero nivel normal aleatorio
+    @Test
+    public void TestRandomTableroNormal() {
+        GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(1);
+        Casella[][] Matriz= T.getMatriu();
+        int contadorMinas = 0;
+        for(int i= 0; i < T.getFiles(); i++)
+        {
+            for(int j= 0; j < T.getColumnes(); j++)
+            {
+                if(Matriz[i][j].getValor() == 9)
+                {
+                    contadorMinas++;
+                }
+            }
 
-	}
+        }
+
+        assertEquals(40, contadorMinas);
+
+    }
+
+    // 18- test para crear tablero nivel dificil aleatorio
+    @Test
+    public void TestRandomTableroDificil() {
+        GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(2);
+        Casella[][] Matriz= T.getMatriu();
+        int contadorMinas = 0;
+        for(int i= 0; i < T.getFiles(); i++)
+            for(int j= 0; j < T.getColumnes(); j++)
+            {
+                if(Matriz[i][j].getValor() == 9)
+                    contadorMinas++;
+            }
+        assertEquals(99, contadorMinas);
+
+    }
 }
