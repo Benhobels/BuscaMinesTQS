@@ -191,4 +191,26 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(2,6), 0);
 		assertEquals(T.getValorCasillaAbierta(2,3), 0);
 	}
+	
+	@Test 
+	public void TestPathCoverageBordeInferior() {
+		GeneradorRandom rand = new MockPathCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(7,4);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(7,4), 0);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertEquals(T.getValorCasillaAbierta(7,6), 1);
+		assertEquals(T.getValorCasillaAbierta(6,6), 1);
+		assertEquals(T.getValorCasillaAbierta(7,5), 0);
+		assertEquals(T.getValorCasillaAbierta(6,5), 1);
+		assertEquals(T.getValorCasillaAbierta(6,4), 1);
+		assertEquals(T.getValorCasillaAbierta(7,3), 0);
+		assertEquals(T.getValorCasillaAbierta(6,3), 1);
+		assertEquals(T.getValorCasillaAbierta(7,2), 0);
+		assertEquals(T.getValorCasillaAbierta(6,2), 1);
+		assertEquals(T.getValorCasillaAbierta(7,1), 1);
+		assertEquals(T.getValorCasillaAbierta(6,1), 2);
+	}
 }

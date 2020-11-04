@@ -53,9 +53,6 @@ public class Tauler {
 			break;
 		default:
 			// missatge d'error o algo --- try catch
-			n_Filas = 8;
-			n_Columnas = 8;
-			n_Minas = 10;
 			break;
 			
 		}
