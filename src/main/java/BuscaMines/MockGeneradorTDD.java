@@ -1,6 +1,6 @@
 package BuscaMines;
 
-public class MockGeneradorRandom implements GeneradorTablero{
+public class MockGeneradorTDD implements GeneradorTablero{
     
 	public Casella[][] generarMinas(int filas, int columnas, int minas) {
         Casella[][] matriz = new Casella[filas][columnas];

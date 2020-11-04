@@ -55,7 +55,7 @@ public class TaulerTest {
 	// 5- test para colocar las minas dentro de la matriz (utilizamos MockGeneradorRandom)
 	@Test
 	public void testColocarMinas() {
-		GeneradorTablero rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		assertEquals(T.getValorCasella(0, 0), 9);
@@ -74,7 +74,7 @@ public class TaulerTest {
 	// 6- test para generar los numeros de alrededor de las minas
 	@Test
 	public void testGenerarTablero() {
-		GeneradorTablero rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		// comprovamos casilla fila 4 columna 6 --> mina
@@ -100,7 +100,7 @@ public class TaulerTest {
 	// 7- test para abrir la esquina superior derecha (y su respectiva expansión)
 	@Test
 	public void testAbrirEsquinaSuperiorDerecha() {
-		GeneradorTablero rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(0,7);
@@ -118,7 +118,7 @@ public class TaulerTest {
 	// 8- test para abrir la esquina inferior derecha (no se debe expandir!)
 	@Test
 	public void testAbrirEsquinaInferiorDerecha() {
-		GeneradorTablero rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(7,7);
@@ -133,7 +133,7 @@ public class TaulerTest {
 	// 9- test para abrir esquina superior izquierda (y su respectiva expansión)
 	@Test
 	public void testAbrirEsquinaSuperiorIzquierda() {
-		GeneradorTablero rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(0,0);
@@ -148,7 +148,7 @@ public class TaulerTest {
 	// 10- test para abrir una casilla central (y su respectiva expansión)
 	@Test
 	public void testAbrirCasillaMedio() {
-		GeneradorTablero rand = new MockGeneradorRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(2,1);
@@ -292,8 +292,9 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(1,2), 2);
 	}
 	
-	////// algun test amb el real random
+	//Test con generacion de tableros aleatorios siguiendo TDD
 	
+	// 16- test para crear tablero nivel facil aleatorio
 	@Test
 	public void TestRandomTableroFacil() {
 		GeneradorTablero rand = new TableroRandom();
@@ -307,10 +308,11 @@ public class TaulerTest {
 				if(Matriz[i][j].getValor() == 9)
 					contadorMinas++;
 			}
-		assertEquals(contadorMinas, 10);
+		assertEquals(10, contadorMinas);
 
 	}
 	
+	// 17- test para crear tablero nivel normal aleatorio
 	@Test
 	public void TestRandomTableroNormal() {
 		GeneradorTablero rand = new TableroRandom();
@@ -319,15 +321,22 @@ public class TaulerTest {
 		Casella[][] Matriz= T.getMatriu();
 		int contadorMinas = 0;
 		for(int i= 0; i < T.getFiles(); i++)
+		{
 			for(int j= 0; j < T.getColumnes(); j++)
 			{
 				if(Matriz[i][j].getValor() == 9)
+				{
 					contadorMinas++;
+				}
 			}
-		assertEquals(contadorMinas, 40);
+			
+		}
+		
+		assertEquals(40, contadorMinas);
 
 	}
 	
+	// 18- test para crear tablero nivel dificil aleatorio
 	@Test
 	public void TestRandomTableroDificil() {
 		GeneradorTablero rand = new TableroRandom();
@@ -341,7 +350,7 @@ public class TaulerTest {
 				if(Matriz[i][j].getValor() == 9)
 					contadorMinas++;
 			}
-		assertEquals(contadorMinas, 99);
+		assertEquals(99, contadorMinas);
 
 	}
 }

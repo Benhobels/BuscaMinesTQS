@@ -174,8 +174,8 @@ public class Tauler {
 	}
 	
 	private void restaurarMinas() {
-		for(int i = 0; i < n_Filas-1; i++) {
-			for(int j = 0; j < n_Columnas-1; j++) {
+		for(int i = 0; i < n_Filas; i++) {
+			for(int j = 0; j < n_Columnas; j++) {
 				if(m_Matriz[i][j].getValor() > 8) {
 					m_Matriz[i][j].setValor(9);
 				}
@@ -339,5 +339,6 @@ public class Tauler {
 		abrirCasilla(fila+1, col);
 		abrirCasilla(fila+1, col+1);
 	}
+	
 	
 }
