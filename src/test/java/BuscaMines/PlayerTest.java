@@ -24,8 +24,7 @@ public class PlayerTest {
 		int[] posCasilla = new int[2];
 		posCasilla = p.seleccionarCasilla();
 		assertEquals(posCasilla[0], 2);
-		assertEquals(posCasilla[1], 6);
-		
+		assertEquals(posCasilla[1], 6);	
 	}
 	
 	// 4- test en el que el usuario selecciona una casilla inválida -- fuera de rango --
