@@ -293,4 +293,55 @@ public class TaulerTest {
 	}
 	
 	////// algun test amb el real random
+	
+	@Test
+	public void TestRandomTableroFacil() {
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		Casella[][] Matriz= T.getMatriu();
+		int contadorMinas = 0;
+		for(int i= 0; i < T.getFiles(); i++)
+			for(int j= 0; j < T.getColumnes(); j++)
+			{
+				if(Matriz[i][j].getValor() == 9)
+					contadorMinas++;
+			}
+		assertEquals(contadorMinas, 10);
+
+	}
+	
+	@Test
+	public void TestRandomTableroNormal() {
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(1);
+		Casella[][] Matriz= T.getMatriu();
+		int contadorMinas = 0;
+		for(int i= 0; i < T.getFiles(); i++)
+			for(int j= 0; j < T.getColumnes(); j++)
+			{
+				if(Matriz[i][j].getValor() == 9)
+					contadorMinas++;
+			}
+		assertEquals(contadorMinas, 40);
+
+	}
+	
+	@Test
+	public void TestRandomTableroDificil() {
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(2);
+		Casella[][] Matriz= T.getMatriu();
+		int contadorMinas = 0;
+		for(int i= 0; i < T.getFiles(); i++)
+			for(int j= 0; j < T.getColumnes(); j++)
+			{
+				if(Matriz[i][j].getValor() == 9)
+					contadorMinas++;
+			}
+		assertEquals(contadorMinas, 99);
+
+	}
 }
