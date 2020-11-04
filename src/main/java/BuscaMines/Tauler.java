@@ -12,9 +12,9 @@ public class Tauler {
 	
 	public Tauler()
 	{
-		int n_Columnas = 0;
-		int n_Filas = 0;
-		int n_Minas = 0;
+		n_Columnas = 0;
+		n_Filas = 0;
+		n_Minas = 0;
 		Casella[][] m_Matriz = null;
 		Casella[][] m_MatrizJugador = null;
 		m_Rand = null;
@@ -53,6 +53,9 @@ public class Tauler {
 			break;
 		default:
 			// missatge d'error o algo --- try catch
+			n_Filas = 8;
+			n_Columnas = 8;
+			n_Minas = 10;
 			break;
 			
 		}
@@ -76,9 +79,9 @@ public class Tauler {
 	
 	public Tauler(GeneradorRandom r)
 	{
-		int n_Columnas = 0;
-		int n_Filas = 0;
-		int n_Minas = 0;
+		n_Columnas = 0;
+		n_Filas = 0;
+		n_Minas = 0;
 		Casella[][] m_Matriz = null;
 		Casella[][] m_MatrizJugador = null;
 		m_Rand = r;

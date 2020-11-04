@@ -1,7 +1,8 @@
 package BuscaMines;
 
 public class MockGeneradorRandom implements GeneradorRandom{
-    public Casella[][] generarMinas(int filas, int columnas, int minas) {
+    
+	public Casella[][] generarMinas(int filas, int columnas, int minas) {
         Casella[][] matriz = new Casella[filas][columnas];
         
         //Aquest bucle hauria de anar fora potser
@@ -10,7 +11,6 @@ public class MockGeneradorRandom implements GeneradorRandom{
         		matriz[i][j] = new Casella();
         	}
         }
-        
         
         matriz[0][0].setValor(9);
         matriz[0][4].setValor(9);
@@ -25,5 +25,4 @@ public class MockGeneradorRandom implements GeneradorRandom{
         
         return matriz;
     }
-
 }

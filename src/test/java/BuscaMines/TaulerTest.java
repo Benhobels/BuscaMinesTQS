@@ -74,13 +74,13 @@ public class TaulerTest {
 		assertEquals(T.getValorCasella(4, 5), 1);
 		// comprovamos casilla fila 5 columna 7
 		assertEquals(T.getValorCasella(4, 6), 2);
-		// comprovamos cassilla fila 5 columna 5
+		// comprovamos casilla fila 5 columna 5
 		assertEquals(T.getValorCasella(4, 4), 1);
 		// comprovamos casilla fila 3 columna 6
 		assertEquals(T.getValorCasella(2, 5), 2);
 		// comprovamos casilla fila 3 columna 7
 		assertEquals(T.getValorCasella(2, 6), 2);
-		// comprovamos cassilla fila 3 columna 5
+		// comprovamos casilla fila 3 columna 5
 		assertEquals(T.getValorCasella(2, 4), 2);
 	}
 	
@@ -160,4 +160,35 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(0, 0));
 	}
 	
+	// a partir de aquí, generamos diferentes mocks con el fin de realizar path coverage
+	
+	// este mock constará de minas en las esquinas y nos permitirá expandir los bordes restantes
+	@Test
+	public void TestPathCoverageBordeDerecha() {
+		GeneradorRandom rand = new MockPathCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(3,7);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(3,7), 0);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertEquals(T.getValorCasillaAbierta(1,7), 1);
+		assertEquals(T.getValorCasillaAbierta(1,6), 2);
+		assertEquals(T.getValorCasillaAbierta(1,5), 2);
+		assertEquals(T.getValorCasillaAbierta(1,4), 2);
+		assertEquals(T.getValorCasillaAbierta(1,3), 2);
+		assertEquals(T.getValorCasillaAbierta(1,2), 1);
+		assertEquals(T.getValorCasillaAbierta(2,2), 1);
+		assertEquals(T.getValorCasillaAbierta(3,2), 1);
+		assertEquals(T.getValorCasillaAbierta(4,2), 2);
+		assertEquals(T.getValorCasillaAbierta(4,3), 1);
+		assertEquals(T.getValorCasillaAbierta(4,4), 1);
+		assertEquals(T.getValorCasillaAbierta(4,5), 1);
+		assertEquals(T.getValorCasillaAbierta(5,5), 1);
+		assertEquals(T.getValorCasillaAbierta(6,5), 1);
+		assertEquals(T.getValorCasillaAbierta(6,6), 1);
+		assertEquals(T.getValorCasillaAbierta(6,7), 1);
+		assertEquals(T.getValorCasillaAbierta(2,6), 0);
+		assertEquals(T.getValorCasillaAbierta(2,3), 0);
+	}
 }
