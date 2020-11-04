@@ -213,4 +213,57 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(7,1), 1);
 		assertEquals(T.getValorCasillaAbierta(6,1), 2);
 	}
+	
+	@Test
+	public void TestDecisionCoverageEsquinaInferiorDerecha() {
+		GeneradorRandom rand = new MockEsquinasCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(7, 7);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(7,7), 0);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertEquals(T.getValorCasillaAbierta(0,4), 1);
+		assertEquals(T.getValorCasillaAbierta(1,4), 2);
+		assertEquals(T.getValorCasillaAbierta(1,5), 1);
+		assertEquals(T.getValorCasillaAbierta(1,6), 1);
+		assertEquals(T.getValorCasillaAbierta(2,6), 1);
+		assertEquals(T.getValorCasillaAbierta(3,6), 1);
+		assertEquals(T.getValorCasillaAbierta(4,6), 1);
+		assertEquals(T.getValorCasillaAbierta(5,6), 1);
+		assertEquals(T.getValorCasillaAbierta(6,6), 2);
+		assertEquals(T.getValorCasillaAbierta(7,6), 1);
+		assertEquals(T.getValorCasillaAbierta(6,7), 0);
+		assertEquals(T.getValorCasillaAbierta(3,7), 0);
+	}
+	
+	@Test
+	public void TestDecisionCoverageEsquinaInferiorIzquierda() {
+		GeneradorRandom rand = new MockEsquinasCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(7, 0);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(7,0), 0);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertEquals(T.getValorCasillaAbierta(6,0), 1);
+		assertEquals(T.getValorCasillaAbierta(6,1), 3);
+		assertEquals(T.getValorCasillaAbierta(7,1), 1);
+	}
+	
+	@Test
+	public void TestDecisionCoverageEsquinaSuperiorIzquierda() {
+		GeneradorRandom rand = new MockEsquinasCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(0, 0);
+		//comprovamos que la casilla seleccionada se abre con el valor correcto
+		assertEquals(T.getValorCasillaAbierta(0,0), 0);
+		//comprovamos que el tablero se haya expandido correctamente
+		assertEquals(T.getValorCasillaAbierta(0,1), 0);
+		assertEquals(T.getValorCasillaAbierta(0,2), 1);
+		assertEquals(T.getValorCasillaAbierta(1,0), 1);
+		assertEquals(T.getValorCasillaAbierta(1,1), 1);
+		assertEquals(T.getValorCasillaAbierta(1,2), 2);
+	}
 }
