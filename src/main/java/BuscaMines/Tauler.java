@@ -1,7 +1,5 @@
 package BuscaMines;
 
-import java.util.Random;
-
 public class Tauler {
 	private int n_Columnas;
 	private int n_Filas;
