@@ -1,4 +1,7 @@
-package BuscaMines;
+package ModeloTest;
+
+import Modelo.Casella;
+import Modelo.GeneradorTablero;
 
 // mock utilizado para realizar el Path Coverage y Decision Coverage de los bordes restantes que no se han comprovado con TDD
 public class MockBordesCoverage implements GeneradorTablero{

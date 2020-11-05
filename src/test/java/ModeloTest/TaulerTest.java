@@ -1,8 +1,13 @@
-package BuscaMines;
+package ModeloTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Modelo.Casella;
+import Modelo.GeneradorTablero;
+import Modelo.TableroRandom;
+import Modelo.Tauler;
 
 // MockGeneradorTauler = utilizado para la estrategia TDD
 // MockBordesCoverage = utilizado para la estrategia Path Coverage de los bordes del tablero

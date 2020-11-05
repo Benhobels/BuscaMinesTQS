@@ -1,8 +1,10 @@
-package BuscaMines;
+package ModeloTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Modelo.Casella;
 
 public class CasellaTest {
 

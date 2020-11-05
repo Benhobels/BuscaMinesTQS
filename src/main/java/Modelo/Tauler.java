@@ -1,4 +1,4 @@
-package BuscaMines;
+package Modelo;
 
 public class Tauler {
 	private int n_Columnas;

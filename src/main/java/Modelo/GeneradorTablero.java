@@ -1,4 +1,4 @@
-package BuscaMines;
+package Modelo;
 
 // se encarga de colocar las minas en el tablero
 public interface GeneradorTablero {

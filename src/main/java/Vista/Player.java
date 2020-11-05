@@ -1,4 +1,4 @@
-package BuscaMines;
+package Vista;
 
 public interface Player {
 	public abstract int seleccionarDificultad();

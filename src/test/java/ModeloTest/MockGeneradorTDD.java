@@ -1,4 +1,7 @@
-package BuscaMines;
+package ModeloTest;
+
+import Modelo.Casella;
+import Modelo.GeneradorTablero;
 
 public class MockGeneradorTDD implements GeneradorTablero{
     

@@ -1,4 +1,6 @@
-package BuscaMines;
+package VistaTest;
+
+import Vista.Player;
 
 public class MockPlayer implements Player {
 	public int seleccionarDificultad() {

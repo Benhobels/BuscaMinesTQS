@@ -1,8 +1,13 @@
-package BuscaMines;
+package VistaTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Modelo.GeneradorTablero;
+import Modelo.TableroRandom;
+import Modelo.Tauler;
+import Vista.Player;
 
 public class PlayerTest {
 
@@ -17,7 +22,7 @@ public class PlayerTest {
 		assertTrue(T.comprobarDificultad(dificultad));
 	}
 	
-	// 2- test en el que el usuario selecciona una dificultad no válida --try catch?---
+	// 2- test en el que el usuario selecciona una dificultad no válida 
 	@Test
 	public void testSelectDificultadInvalida()
 	{

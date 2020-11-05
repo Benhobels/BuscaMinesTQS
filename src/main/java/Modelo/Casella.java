@@ -1,4 +1,4 @@
-package BuscaMines;
+package Modelo;
 
 public class Casella {
 	
