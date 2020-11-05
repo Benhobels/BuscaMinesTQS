@@ -15,8 +15,9 @@ public class TaulerTest {
 	// 1 - test para generar el tablero del nivel fácil
 	@Test
 	public void testGenerarTaulerFacil() {
-		
-		Tauler T = new Tauler();
+		// test actualizado para el uso de mocks
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		assertEquals(T.getFiles(), 8);
 		assertEquals(T.getColumnes(), 8);
@@ -26,7 +27,9 @@ public class TaulerTest {
 	// 2- test para generar el tablero del nivel normal
 	@Test
 	public void testGenerarTaulerNormal() {
-		Tauler T = new Tauler();
+		// test actualizado para el uso de mocks
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
 		T.generarTauler(1);
 		assertEquals(T.getFiles(), 16);
 		assertEquals(T.getColumnes(), 16);
@@ -36,21 +39,27 @@ public class TaulerTest {
 	// 3- test para generar el tablero del nivel difícil
 	@Test
 	public void testGenerarTaulerDificil() {
-		Tauler T = new Tauler();
+		// test actualizado para el uso de mocks
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
 		T.generarTauler(2);
 		assertEquals(T.getFiles(), 16);
 		assertEquals(T.getColumnes(), 30);
 		assertEquals(T.getNumMines(), 99);
 	}
 	
+	/*
 	// 4- test para generar la matriz que representa el tablero
 	@Test
 	public void testGenerarMatriu() {
+		// test actualizado para el uso de mocks
 		Tauler T = new Tauler();
 		Casella[][] m = new Casella[16][16]; 
 		T.generarTauler(1);
-		assertEquals(T.getMatriu(),m);
+		assertEquals(T.getMatriu(), m);
 	}
+	NOTA: Test ya no útil debido al uso de los mocks!
+	*/
 	
 	// 5- test para colocar las minas dentro de la matriz (utilizamos MockGeneradorRandom)
 	@Test
@@ -353,4 +362,6 @@ public class TaulerTest {
         assertEquals(99, contadorMinas);
 
     }
+    
+    // decision coverage de las funciones compruebaX
 }

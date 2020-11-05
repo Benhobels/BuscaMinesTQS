@@ -8,6 +8,7 @@ public class Tauler {
 	private Casella[][] m_MatrizJugador;
 	private static GeneradorTablero m_Rand;
 	
+	/*
 	public Tauler()
 	{
 		n_Columnas = 0;
@@ -17,6 +18,8 @@ public class Tauler {
 		Casella[][] m_MatrizJugador = null;
 		m_Rand = null;
 	}
+	NOTA: Constructor por defecto no útil debido al uso de los mocks
+	*/
 	
 	public int getColumnes() {
 		return n_Columnas;
@@ -52,10 +55,7 @@ public class Tauler {
 		}
 		generarMatriu(n_Filas,n_Columnas);
 		generarMatrizJugador(n_Filas,n_Columnas);
-		if(m_Rand != null) {
-			// preguntar si es necesario debido al nuevo constructor del Mock
-			colocarMinas();
-		}
+		colocarMinas();
 	}
 	
 	private void generarMatriu(int nFil,int nCol)
@@ -361,7 +361,7 @@ public class Tauler {
 	
 	public boolean comprobarAccion(int accion)
 	{
-		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar bandera
+		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar bandera 
 			return true;
 		return false;
 	}

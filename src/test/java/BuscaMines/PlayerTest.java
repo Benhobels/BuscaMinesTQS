@@ -12,7 +12,8 @@ public class PlayerTest {
 		Player p = new MockPlayer();
 		int dificultad = p.seleccionarDificultad();
 		assertEquals(dificultad, 1);
-		Tauler T = new Tauler();
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
 		assertTrue(T.comprobarDificultad(dificultad));
 	}
 	
@@ -23,7 +24,8 @@ public class PlayerTest {
 		Player p = new MockPlayerWrong();
 		int dificultad = p.seleccionarDificultad();
 		assertEquals(dificultad, 4);
-		Tauler T = new Tauler();
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
 		assertFalse(T.comprobarDificultad(dificultad));
 	}
 	
@@ -36,7 +38,8 @@ public class PlayerTest {
 		assertEquals(tirada[0], 3);
 		assertEquals(tirada[1], 6);
 		assertEquals(tirada[2], 1);
-		Tauler T = new Tauler();
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
 		T.generarTauler(1);
 		assertTrue(T.comprobarFila(tirada[0]));
 		assertTrue(T.comprobarColumna(tirada[1]));
@@ -52,7 +55,8 @@ public class PlayerTest {
 		assertEquals(tirada[0], 17);
 		assertEquals(tirada[1], 17);
 		assertEquals(tirada[2], 0);
-		Tauler T = new Tauler();
+		GeneradorTablero rand = new TableroRandom();
+		Tauler T = new Tauler(rand);
 		T.generarTauler(1);
 		assertFalse(T.comprobarFila(tirada[0]));
 		assertFalse(T.comprobarColumna(tirada[1]));
@@ -63,6 +67,6 @@ public class PlayerTest {
 	
 	// 6- test en el que el propio usuario entra un valor --cin de usuario--
 
-	
+	// while i dentro try catch
 
 }
