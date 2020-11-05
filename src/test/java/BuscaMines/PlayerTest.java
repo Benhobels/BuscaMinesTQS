@@ -8,14 +8,24 @@ public class PlayerTest {
 
 	// 1- test en el que el usuario selecciona una dificultad válida
 	@Test
-	public void testSelectDificultadNormal() {
+	public void testSelectDificultadValida() {
 		Player p = new MockPlayer();
-		int dificultad = 0;
-		dificultad = p.seleccionarDificultad();
+		int dificultad = p.seleccionarDificultad();
 		assertEquals(dificultad, 1);
+		Tauler T = new Tauler();
+		assertTrue(T.comprobarDificultad(dificultad));
 	}
 	
 	// 2- test en el que el usuario selecciona una dificultad no válida --try catch?---
+	@Test
+	public void testSelectDificultadInvalida()
+	{
+		Player p = new MockPlayerWrong();
+		int dificultad = p.seleccionarDificultad();
+		assertEquals(dificultad, 4);
+		Tauler T = new Tauler();
+		assertFalse(T.comprobarDificultad(dificultad));
+	}
 	
 	// 3- test en el que el usuario selecciona una casilla válida 
 	@Test
