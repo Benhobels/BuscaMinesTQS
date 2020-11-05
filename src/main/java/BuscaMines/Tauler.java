@@ -338,5 +338,11 @@ public class Tauler {
 		abrirCasilla(fila+1, col+1);
 	}
 	
+	public boolean comprobarDificultad(int dif)
+	{
+		if(dif > 2)
+			return false;
+		return true;
+	}
 	
 }
