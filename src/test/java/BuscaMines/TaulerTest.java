@@ -363,5 +363,72 @@ public class TaulerTest {
 
     }
     
-    // decision coverage de las funciones compruebaX
+    // 19 - test para comprovar una dificultad válida introducida por el usuario
+    @Test
+    public void TestComprovarDificultadValida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        assertTrue(T.comprobarDificultad(0));
+    }
+    
+    // 20 - test para comprovar una dificultad inválida introducida por el usuario
+    @Test
+    public void TestComprovarDificultadInvalida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        assertFalse(T.comprobarDificultad(5));
+    }
+    
+    // 21 - test para comprovar una fila válida introducida por el usuario
+    @Test
+    public void TestComprovarFilaValida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(0);
+        assertTrue(T.comprobarFila(1));
+    }
+    
+    // 22 - test para comprovar una fila inválida introducida por el usuario
+    @Test
+    public void TestComprovarFilaInvalida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(0);
+        assertFalse(T.comprobarColumna(9));
+    }
+    
+    // 23 - test para comprovar una columna válida introducida por el usuario
+    @Test
+    public void TestComprovarColumnaValida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(0);
+        assertTrue(T.comprobarFila(5));
+    }
+    
+    // 24 - test para comprovar una columna inválida introducida por el usuario
+    @Test
+    public void TestComprovarColumnaInvalida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(0);
+        assertFalse(T.comprobarColumna(9));
+    }
+    
+    // 25 - test para comprovar una acción válida introducida por el usuario
+    @Test
+    public void TestComprovarAccionValida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        assertTrue(T.comprobarAccion(2));
+    }
+    
+    // 26 - test para comprovar una acción inválida introducida por el usuario
+    @Test
+    public void TestComprovarAccionInvalida() {
+    	GeneradorTablero rand = new TableroRandom();
+        Tauler T = new Tauler(rand);
+        T.generarTauler(0);
+        assertFalse(T.comprobarAccion(0));
+    }
 }
