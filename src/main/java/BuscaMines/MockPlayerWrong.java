@@ -7,8 +7,8 @@ public class MockPlayerWrong implements Player {
 	
 	public int[] seleccionarCasilla() {
 		int[] posiciones = new int[2];
-		posiciones[0] = 3; // fila
-		posiciones[1] = 6; // columna
+		posiciones[0] = 17; // fila
+		posiciones[1] = 17; // columna
 		return posiciones;
 	}
 }
