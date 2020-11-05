@@ -31,30 +31,32 @@ public class PlayerTest {
 	@Test
 	public void testSelectCasilla() {
 		Player p = new MockPlayer();
-		int[] posCasilla = new int[3];
-		posCasilla = p.seleccionarCasilla();
-		assertEquals(posCasilla[0], 3);
-		assertEquals(posCasilla[1], 6);
-		assertEquals(posCasilla[2], 0);
+		int[] tirada = new int[3];
+		tirada = p.seleccionarTirada();
+		assertEquals(tirada[0], 3);
+		assertEquals(tirada[1], 6);
+		assertEquals(tirada[2], 1);
 		Tauler T = new Tauler();
-		assertTrue(T.comprobarFila(posCasilla[0]));
-		assertTrue(T.comprobarColumna(posCasilla[1]));
-		assertTrue(T.comprobarAccion(posCasilla[2]));
+		T.generarTauler(1);
+		assertTrue(T.comprobarFila(tirada[0]));
+		assertTrue(T.comprobarColumna(tirada[1]));
+		assertTrue(T.comprobarAccion(tirada[2]));
 	}
 	
 	// 4- test en el que el usuario selecciona una casilla inválida -- fuera de rango --
 	@Test
 	public void testSelectCasillaInvalida() {
-		Player p = new MockPlayer();
-		int[] posCasilla = new int[3];
-		posCasilla = p.seleccionarCasilla();
-		assertEquals(posCasilla[0], 17);
-		assertEquals(posCasilla[1], 17);
-		assertEquals(posCasilla[2], 4);
+		Player p = new MockPlayerWrong();
+		int[] tirada = new int[3];
+		tirada = p.seleccionarTirada();
+		assertEquals(tirada[0], 17);
+		assertEquals(tirada[1], 17);
+		assertEquals(tirada[2], 0);
 		Tauler T = new Tauler();
-		assertFalse(T.comprobarFila(posCasilla[0]));
-		assertFalse(T.comprobarColumna(posCasilla[1]));
-		assertFalse(T.comprobarAccion(posCasilla[2]));
+		T.generarTauler(1);
+		assertFalse(T.comprobarFila(tirada[0]));
+		assertFalse(T.comprobarColumna(tirada[1]));
+		assertFalse(T.comprobarAccion(tirada[2]));
 	}
 	
 	// 5- test en el que el usuario selecciona una casilla inválida -- ya abierta --

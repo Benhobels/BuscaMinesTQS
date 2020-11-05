@@ -5,10 +5,11 @@ public class MockPlayer implements Player {
 		return 1; // dificultad normal
 	}
 	
-	public int[] seleccionarCasilla() {
-		int[] posiciones = new int[2];
-		posiciones[0] = 3; // fila
-		posiciones[1] = 6; // columna
-		return posiciones;
+	public int[] seleccionarTirada() {
+		int[] tirada = new int[3];
+		tirada[0] = 3; // fila
+		tirada[1] = 6; // columna
+		tirada[2] = 1;
+		return tirada;
 	}
 }

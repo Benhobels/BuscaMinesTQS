@@ -5,10 +5,11 @@ public class MockPlayerWrong implements Player {
 		return 4; // dificultad invalida
 	}
 	
-	public int[] seleccionarCasilla() {
-		int[] posiciones = new int[2];
-		posiciones[0] = 17; // fila
-		posiciones[1] = 17; // columna
-		return posiciones;
+	public int[] seleccionarTirada() {
+		int[] tirada = new int[3];
+		tirada[0] = 17; // fila
+		tirada[1] = 17; // columna
+		tirada[2] = 0;
+		return tirada;
 	}
 }

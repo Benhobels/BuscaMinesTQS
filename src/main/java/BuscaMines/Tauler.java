@@ -345,4 +345,25 @@ public class Tauler {
 		return true;
 	}
 	
+	public boolean comprobarFila(int fila)
+	{
+		if(fila > 0 && fila <= n_Filas)
+			return true;
+		return false;
+	}
+	
+	public boolean comprobarColumna(int col)
+	{
+		if(col > 0 && col <= n_Columnas)
+			return true;
+		return false;
+	}
+	
+	public boolean comprobarAccion(int accion)
+	{
+		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar bandera
+			return true;
+		return false;
+	}
+	
 }
