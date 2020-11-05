@@ -1,4 +1,4 @@
-package VistaTest;
+package ControladorTest;
 
 import Vista.Player;
 

@@ -4,13 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import ControladorTest.MockPlayer;
+import ControladorTest.MockPlayerWrong;
 import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
 import Vista.Player;
 
 public class PlayerTest {
-
+/*
 	// 1- test en el que el usuario selecciona una dificultad válida
 	@Test
 	public void testSelectDificultadValida() {
@@ -73,5 +75,5 @@ public class PlayerTest {
 	// 6- test en el que el propio usuario entra un valor --cin de usuario--
 
 	// while i dentro try catch
-
+*/
 }
