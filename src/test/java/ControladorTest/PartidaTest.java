@@ -4,12 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Controlador.Partida;
 import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
 import Vista.Player;
 
 public class PartidaTest {
+	/*
 	// 1- test en el que el usuario selecciona una dificultad válida
 		@Test
 		public void testSelectDificultadValida() {
@@ -66,4 +68,15 @@ public class PartidaTest {
 			assertFalse(T.comprobarColumna(tirada[1]));
 			assertFalse(T.comprobarAccion(tirada[2]));
 		}
+		*/
+		@Test
+		public void testSelectDificultadValida() {
+			Partida P = new MockPlayer();
+			P.seleccionarDificultad();
+			Tauler T = P.getTauler();
+			assertEquals(T.getFiles(),16);
+			assertEquals(T.getColumnes(),16);
+			assertEquals(T.getMines(),40);
+		}
+}
 }

@@ -1,9 +1,19 @@
 package Controlador;
 
-public class Partida {
+import Modelo.GeneradorTablero;
+import Modelo.TableroRandom;
+import Modelo.Tauler;
+
+public abstract class Partida {
+	
+	public Tauler TableroPartida;
+	
 	public Partida() {
-		;
+		GeneradorTablero rand = new TableroRandom();
+		TableroPartida = new Tauler(rand);
 	}
+	
+	
 	
 	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
 	
