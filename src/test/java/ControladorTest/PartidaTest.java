@@ -92,4 +92,9 @@ public class PartidaTest {
 			assertFalse(C[2][5].getAbierta());
 			assertFalse(C[2][5].getBandera());
 		}
+		
+		@Test
+		public void testFinalPartida() {
+			
+		}
 }

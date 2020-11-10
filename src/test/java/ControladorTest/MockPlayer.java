@@ -50,4 +50,8 @@ public class MockPlayer implements Partida {
 		tirada[2] = 2;
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
 	}
+	
+	public boolean FiPartida() {
+		return false;
+	}
 }

@@ -18,6 +18,8 @@ public interface Partida {
 	
 	public abstract void seleccionarTiradaBandera();
 	
+	public abstract boolean FiPartida();
+	
 	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
 	
 	// gestionarSeleccio --> que haura de cridar al comprovarFila, comprovarColumna, comprovarAccio
