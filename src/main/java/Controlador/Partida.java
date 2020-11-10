@@ -4,16 +4,11 @@ import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
 
-public abstract class Partida {
+public interface Partida {
 	
-	public Tauler TableroPartida;
+	public abstract void seleccionarDificultad();
 	
-	public Partida() {
-		GeneradorTablero rand = new TableroRandom();
-		TableroPartida = new Tauler(rand);
-	}
-	
-	
+	public abstract Tauler getTablero();
 	
 	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
 	

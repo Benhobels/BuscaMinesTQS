@@ -73,10 +73,9 @@ public class PartidaTest {
 		public void testSelectDificultadValida() {
 			Partida P = new MockPlayer();
 			P.seleccionarDificultad();
-			Tauler T = P.getTauler();
+			Tauler T = P.getTablero();
 			assertEquals(T.getFiles(),16);
 			assertEquals(T.getColumnes(),16);
-			assertEquals(T.getMines(),40);
+			assertEquals(T.getNumMines(),40);
 		}
-}
 }
