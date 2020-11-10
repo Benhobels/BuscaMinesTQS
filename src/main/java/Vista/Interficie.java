@@ -8,24 +8,24 @@ public class Interficie {
 	{
 		for (int i = 0; i < filas; i++)
 		{
-			System.out.println("------------------------------------------- \n");
+			System.out.println("------------------------------------------- ");
 			for(int j= 0; j < columnas; j++)
 			{
-				System.out.println("| ");
+				System.out.print("| ");
 				if(tablero[i][j].getValor() != 0 && tablero[i][j].getAbierta()) 
 				{
 					if(tablero[i][j].getValor() == 9)
-						System.out.println("* ");
+						System.out.print("* ");
 					else
 						System.out.println(tablero[i][j].getValor());
 				}
 				else
 					if(tablero[i][j].getAbierta())
-						System.out.println("  ");
+						System.out.print("  ");
 					else
-						System.out.println("X ");
+						System.out.print("X ");
 			}
-			System.out.println(" |");
+			System.out.println("|");
 		}
 			
 		

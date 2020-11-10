@@ -29,7 +29,7 @@ public class RealPlayer implements Partida {
 		System.out.println ("0 = Facil / 1 = Normal / 2 = Dificil \n");
 		String dificultad = "";
 		Scanner seleccion = new Scanner (System.in);
-		dificultad = seleccion.nextLine ();
+		dificultad = seleccion.nextLine();
 		int dif = 0;
 		try {
 		  dif = Integer.parseInt(dificultad);
@@ -59,7 +59,7 @@ public class RealPlayer implements Partida {
 		
 		for (int i = 0; i < 3; i++)
 		{
-			comandos[i] = comando.nextLine ();
+			comandos[i] = comando.nextLine();
 			try {
 			  tirada[i] = Integer.parseInt(comandos[i]);
 			} catch (NumberFormatException ex){
@@ -84,13 +84,20 @@ public class RealPlayer implements Partida {
 	public boolean FiPartida() {
 		Casella [][] tableroJugador = TableroPartida.getMatriuPlayer();
 		if(tableroJugador[LastRow][LastCol].getValor() == 9 && tableroJugador[LastRow][LastCol].getAbierta())
+		{
+			System.out.println("Has pisado una mina, has perdido!!");
 			return true;
+		}
 		else
 		{
 			int casillasTotales = TableroPartida.getFiles() * TableroPartida.getColumnes();
 			casillasTotales = casillasTotales - TableroPartida.getNumMines();
 			if(TableroPartida.getContadorCasillasAbiertas() == casillasTotales)
+			{
+				System.out.println("Has abierto todas las casillas sin pisar una mina,"
+						+ " has ganado!!");
 				return true;
+			}
 		}
 		return false;
 		
