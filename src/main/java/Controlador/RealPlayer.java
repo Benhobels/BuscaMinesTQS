@@ -68,8 +68,8 @@ public class RealPlayer implements Partida {
 		}
 		
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
-		LastRow = tirada[0];
-		LastCol = tirada[1];
+		LastRow = tirada[0] - 1;
+		LastCol = tirada[1] - 1;
 	}
 		
 	
