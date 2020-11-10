@@ -345,7 +345,7 @@ public class Tauler {
 	
 	public boolean comprobarDificultad(int dif)
 	{
-		if(dif > 2)
+		if(dif > 2 || dif < 0)
 			return false;
 		return true;
 	}
@@ -378,4 +378,9 @@ public class Tauler {
 			abrirCasilla(fila-1,columna-1);
 	}
 	
+	public void comprobarCreacion(int dificultad)
+	{
+		if(comprobarDificultad(dificultad))
+			generarTauler(dificultad);	
+	}
 }

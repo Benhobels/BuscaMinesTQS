@@ -87,7 +87,28 @@ public class PartidaTest {
 			p.seleccionarTirada();
 			Tauler T = p.getTablero();
 			Casella[][] C = T.getMatriuPlayer();
-			assertNotNull(C[2][5].getValor());
 			assertTrue(C[2][5].getAbierta());
+		}
+		
+		@Test
+		public void testSelectDificultadIncorrecta() {
+			Partida P = new MockPlayer();
+			P.seleccionarDificultadIncorrecta();
+			Tauler T = P.getTablero();
+			assertEquals(T.getFiles(),0);
+			assertEquals(T.getColumnes(),0);
+			assertEquals(T.getNumMines(),0);
+		}
+		
+		@Test
+		public void testAbrirCasillaIncorrecta() {
+			Partida p = new MockPlayer();
+			p.seleccionarDificultad();
+			p.seleccionarTiradaIncorrecta();
+			Tauler T = p.getTablero();
+			Casella[][] C = T.getMatriuPlayer();
+			for(int i = 0; i < T.getFiles(); i++)
+				for(int j=0; j < T.getColumnes(); j++)
+					assertFalse(C[i][j].getAbierta());
 		}
 }
