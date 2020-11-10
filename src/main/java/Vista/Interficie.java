@@ -14,9 +14,10 @@ public class Interficie {
 				System.out.print("| ");
 				if(tablero[i][j].getValor() != 0 && tablero[i][j].getAbierta()) 
 				{
+					/*
 					if(tablero[i][j].getValor() == 9)
 						System.out.print("* ");
-					else
+					else*/
 						System.out.println(tablero[i][j].getValor());
 				}
 				else
