@@ -88,7 +88,7 @@ public class PartidaTest {
 			Casella[][] C = T.getMatriuPlayer();
 			assertFalse(C[2][5].getAbierta());
 			assertTrue(C[2][5].getBandera());
-			p.seleccionarTiradaQuitarBandera();
+			p.seleccionarTiradaBandera();
 			assertFalse(C[2][5].getAbierta());
 			assertFalse(C[2][5].getBandera());
 		}

@@ -366,7 +366,7 @@ public class Tauler {
 	
 	public boolean comprobarAccion(int accion)
 	{
-		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar bandera 
+		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar/quitar bandera
 			return true;
 		return false;
 	}
@@ -378,7 +378,13 @@ public class Tauler {
 			if(accion == 1)
 				abrirCasilla(fila-1,columna-1);
 			else
-				colocarBandera(fila-1,columna-1);
+				if(!m_MatrizJugador[fila-1][columna-1].getBandera())
+					colocarBandera(fila-1,columna-1);
+				else
+					quitarBandera(fila-1,columna-1);
+
+
+					
 	}
 	
 	public void comprobarCreacion(int dificultad)
@@ -390,5 +396,10 @@ public class Tauler {
 	private void colocarBandera(int fila,int columna)
 	{
 		m_MatrizJugador[fila][columna].setBandera(true);
+	}
+	
+	private void quitarBandera(int fila,int columna)
+	{
+		m_MatrizJugador[fila][columna].setBandera(false);
 	}
 }
