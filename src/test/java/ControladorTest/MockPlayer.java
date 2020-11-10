@@ -54,4 +54,6 @@ public class MockPlayer implements Partida {
 	public boolean FiPartida() {
 		return false;
 	}
+	
+	public void mostrarTablero() {;}
 }

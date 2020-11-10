@@ -7,6 +7,7 @@ public class Tauler {
 	private Casella[][] m_Matriz;
 	private Casella[][] m_MatrizJugador;
 	private static GeneradorTablero m_Rand;
+	private int n_contadorCasillasAbiertas;
 	
 	/*
 	public Tauler()
@@ -81,6 +82,8 @@ public class Tauler {
 		Casella[][] m_Matriz = null;
 		Casella[][] m_MatrizJugador = null;
 		m_Rand = r;
+		n_contadorCasillasAbiertas = 0;
+		
 	}	
 	private void colocarMinas() {
 		m_Matriz = m_Rand.generarMinas(n_Filas, n_Columnas, n_Minas);
@@ -209,6 +212,7 @@ public class Tauler {
 				// si la casilla aún no se ha abierto
 				m_MatrizJugador[fila][col].setValor(m_Matriz[fila][col].getValor());
 				m_MatrizJugador[fila][col].setAbierta(true);
+				n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 			}
 			return;
 		}
@@ -401,5 +405,10 @@ public class Tauler {
 	private void quitarBandera(int fila,int columna)
 	{
 		m_MatrizJugador[fila][columna].setBandera(false);
+	}
+	
+	public int getContadorCasillasAbiertas()
+	{
+		return n_contadorCasillasAbiertas;
 	}
 }

@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
+import Vista.Interficie;
 
 public interface Partida {
 	
@@ -19,6 +20,8 @@ public interface Partida {
 	public abstract void seleccionarTiradaBandera();
 	
 	public abstract boolean FiPartida();
+	
+	public abstract void mostrarTablero();
 	
 	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
 	

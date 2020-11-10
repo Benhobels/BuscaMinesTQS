@@ -9,7 +9,6 @@ import Modelo.Casella;
 import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
-import Vista.Player;
 
 public class PartidaTest {
 
@@ -97,4 +96,5 @@ public class PartidaTest {
 		public void testFinalPartida() {
 			
 		}
+		
 }
