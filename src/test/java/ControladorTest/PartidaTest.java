@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Controlador.Partida;
+import Modelo.Casella;
 import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
@@ -80,13 +81,13 @@ public class PartidaTest {
 		}
 		
 		@Test
-		public void testSelectCasilla() {
+		public void testAbrirCasilla() {
 			Partida p = new MockPlayer();
-			int[] tirada = new int[3];
+			p.seleccionarDificultad();
 			p.seleccionarTirada();
 			Tauler T = p.getTablero();
-			assertTrue(T.comprobarFila(tirada[0]));
-			assertTrue(T.comprobarColumna(tirada[1]));
-			assertTrue(T.comprobarAccion(tirada[2]));
+			Casella[][] C = T.getMatriuPlayer();
+			assertNotNull(C[2][5].getValor());
+			assertTrue(C[2][5].getAbierta());
 		}
 }

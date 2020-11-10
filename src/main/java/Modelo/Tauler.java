@@ -68,6 +68,11 @@ public class Tauler {
 		return m_Matriz;
 	}
 	
+	public Casella[][] getMatriuPlayer()
+	{
+		return m_MatrizJugador;
+	}
+	
 	public Tauler(GeneradorTablero r)
 	{
 		n_Columnas = 0;
@@ -364,6 +369,13 @@ public class Tauler {
 		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar bandera 
 			return true;
 		return false;
+	}
+	
+	public void tiradaJugador(int fila, int columna, int accion)
+	{
+		if(comprobarFila(fila) && comprobarColumna(columna) && comprobarAccion(accion))
+			//restamos 1 porque el jugdor puede escoger a partir de 1 y no de 0
+			abrirCasilla(fila-1,columna-1);
 	}
 	
 }

@@ -24,11 +24,11 @@ public class MockPlayer implements Partida {
 		return TableroPartida;
 	}
 	
-	public int[] seleccionarTirada() {
+	public void seleccionarTirada() {
 		int[] tirada = new int[3];
 		tirada[0] = 3; // fila
 		tirada[1] = 6; // columna
 		tirada[2] = 1;
-		return tirada;
+		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
 	}
 }

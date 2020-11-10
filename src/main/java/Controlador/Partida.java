@@ -10,6 +10,8 @@ public interface Partida {
 	
 	public abstract Tauler getTablero();
 	
+	public abstract void seleccionarTirada();
+	
 	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
 	
 	// gestionarSeleccio --> que haura de cridar al comprovarFila, comprovarColumna, comprovarAccio
