@@ -204,7 +204,7 @@ public class Tauler {
 		if(m_Matriz[fila][col].getValor() != 0)
 		{
 			//si el valor de la casilla seleccionada es diferente de 0
-			if(m_MatrizJugador[fila][col].getAbierta() == false)
+			if(m_MatrizJugador[fila][col].getAbierta() == false && m_MatrizJugador[fila][col].getBandera() == false)
 			{
 				// si la casilla aún no se ha abierto
 				m_MatrizJugador[fila][col].setValor(m_Matriz[fila][col].getValor());
@@ -375,12 +375,20 @@ public class Tauler {
 	{
 		if(comprobarFila(fila) && comprobarColumna(columna) && comprobarAccion(accion))
 			//restamos 1 porque el jugdor puede escoger a partir de 1 y no de 0
-			abrirCasilla(fila-1,columna-1);
+			if(accion == 1)
+				abrirCasilla(fila-1,columna-1);
+			else
+				colocarBandera(fila-1,columna-1);
 	}
 	
 	public void comprobarCreacion(int dificultad)
 	{
 		if(comprobarDificultad(dificultad))
 			generarTauler(dificultad);	
+	}
+	
+	private void colocarBandera(int fila,int columna)
+	{
+		m_MatrizJugador[fila][columna].setBandera(true);
 	}
 }

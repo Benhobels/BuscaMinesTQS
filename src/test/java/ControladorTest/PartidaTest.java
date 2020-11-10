@@ -67,4 +67,15 @@ public class PartidaTest {
 			p.seleccionarTirada();
 			assertTrue(C[2][5].getAbierta());
 		}
+		
+		@Test
+		public void testPonerBandera() {
+			Partida p = new MockPlayer();
+			p.seleccionarDificultad();
+			p.seleccionarTiradaBandera();
+			Tauler T = p.getTablero();
+			Casella[][] C = T.getMatriuPlayer();
+			assertFalse(C[2][5].getAbierta());
+			assertTrue(C[2][5].getBandera());
+		}
 }

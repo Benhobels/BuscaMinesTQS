@@ -16,6 +16,8 @@ public interface Partida {
 
 	public abstract void seleccionarDificultadIncorrecta();
 	
+	public abstract void seleccionarTiradaBandera();
+	
 	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
 	
 	// gestionarSeleccio --> que haura de cridar al comprovarFila, comprovarColumna, comprovarAccio

@@ -42,4 +42,12 @@ public class MockPlayer implements Partida {
 		tirada[2] = 1;
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
 	}
+	
+	public void seleccionarTiradaBandera() {
+		int[] tirada = new int[3];
+		tirada[0] = 3; // fila
+		tirada[1] = 6; // columna
+		tirada[2] = 2;
+		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
+	}
 }
