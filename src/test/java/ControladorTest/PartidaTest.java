@@ -78,4 +78,15 @@ public class PartidaTest {
 			assertEquals(T.getColumnes(),16);
 			assertEquals(T.getNumMines(),40);
 		}
+		
+		@Test
+		public void testSelectCasilla() {
+			Partida p = new MockPlayer();
+			int[] tirada = new int[3];
+			p.seleccionarTirada();
+			Tauler T = p.getTablero();
+			assertTrue(T.comprobarFila(tirada[0]));
+			assertTrue(T.comprobarColumna(tirada[1]));
+			assertTrue(T.comprobarAccion(tirada[2]));
+		}
 }
