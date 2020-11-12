@@ -223,6 +223,7 @@ public class Tauler {
 			{
 				//si se trata de una esquina
 				m_MatrizJugador[fila][col].setAbierta(true);
+				n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 				abrirEsquina(fila,col);
 			}
 			else 
@@ -231,12 +232,14 @@ public class Tauler {
 				{
 					//si se trata de un borde
 					m_MatrizJugador[fila][col].setAbierta(true);
+					n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 					abrirBorde(fila,col);
 				}
 				else
 				{
 					//si se trata de una casilla central
 					m_MatrizJugador[fila][col].setAbierta(true);
+					n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 					abrirCentro(fila,col);
 				}
 			}			
