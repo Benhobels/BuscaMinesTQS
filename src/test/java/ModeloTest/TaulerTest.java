@@ -436,4 +436,21 @@ public class TaulerTest {
         T.generarTauler(0);
         assertFalse(T.comprobarAccion(0));
     }
+    
+    @Test
+    public void TestPathCoverageNumCasillasAbiertas() {
+    	GeneradorTablero rand = new MockEsquinasCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(0, 0);
+    }
+    @Test
+    public void DecisionCoverageEsquinaSuperiorIzquierda() {
+		GeneradorTablero rand = new MockEsquinasCoverage();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		T.abrirCasilla(0, 0);
+		// comprovamos que se ha expandido correctamente
+		assertEquals(T.getContadorCasillasAbiertas(), 6);
+    }
 }
