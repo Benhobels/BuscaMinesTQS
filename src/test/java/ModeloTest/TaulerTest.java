@@ -541,4 +541,32 @@ public class TaulerTest {
 		// comprovamos que se haya retirado la bandera en la casilla 
 		assertFalse(MatrizJugador[0][0].getBandera());
     }
+    
+    @Test
+    public void TestPathCoverageTiradaJugador() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.comprobarCreacion(0);
+		T.tiradaJugador(1, 1, 1);
+		Casella[][] MatrizJugador = T.getMatriuPlayer();
+		// comprovamos que se haya abierto la casilla  
+		assertTrue(MatrizJugador[0][0].getAbierta());
+		T.tiradaJugador(8, 8, 3);
+		MatrizJugador = T.getMatriuPlayer();
+		// comprovamos que no se haya realizado nada al respecto (acción inválida)
+		assertFalse(MatrizJugador[7][7].getAbierta());
+    }
+    
+    @Test
+    public void TestPathCoverageTiradaJugadorIncorrecta() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.comprobarCreacion(0);
+		T.tiradaJugador(1, 9, 1);
+		// comprovamos que se haya abierto ninguna casilla (columna inválida)
+		assertEquals(T.getContadorCasillasAbiertas(), 0);
+		T.tiradaJugador(9, 1, 1);
+		// comprovamos que no se haya realizado nada al respecto (acción inválida)
+		assertEquals(T.getContadorCasillasAbiertas(), 0);
+    }
 }
