@@ -503,4 +503,42 @@ public class TaulerTest {
 		assertFalse(T.comprobarAccion(-1));
 		assertFalse(T.comprobarAccion(4));
     }
+    
+    @Test
+    public void TestPathCoverageComprovarCreacion() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.comprobarCreacion(0);
+		// comprovamos que los diferentes aspectos del tablero se han creado correctamente
+		assertEquals(T.getFiles(), 8);
+		assertEquals(T.getColumnes(), 8);
+		assertEquals(T.getNumMines(), 10);
+		
+    }
+    
+    @Test
+    public void TestPathCoverageComprovarCreacionInvalida() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.comprobarCreacion(4);
+		// comprovamos que los diferentes aspectos del tablero se han creado correctamente
+		assertEquals(T.getFiles(), 0);
+		assertEquals(T.getColumnes(), 0);
+		assertEquals(T.getNumMines(), 0);
+    }
+    
+    @Test
+    public void TestPathCoverageComprovarBandera() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.comprobarCreacion(0);
+		T.tiradaJugador(1, 1, 2);
+		Casella[][] MatrizJugador = T.getMatriuPlayer();
+		// comprovamos que se haya colocado una bandera en la casilla 
+		assertTrue(MatrizJugador[0][0].getBandera());
+		T.tiradaJugador(1, 1, 2);
+		MatrizJugador = T.getMatriuPlayer();
+		// comprovamos que se haya retirado la bandera en la casilla 
+		assertFalse(MatrizJugador[0][0].getBandera());
+    }
 }
