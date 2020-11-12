@@ -388,10 +388,7 @@ public class Tauler {
 				if(!m_MatrizJugador[fila-1][columna-1].getBandera())
 					colocarBandera(fila-1,columna-1);
 				else
-					quitarBandera(fila-1,columna-1);
-
-
-					
+					quitarBandera(fila-1,columna-1);				
 	}
 	
 	public void comprobarCreacion(int dificultad)

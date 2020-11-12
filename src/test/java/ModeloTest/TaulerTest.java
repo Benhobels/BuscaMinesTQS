@@ -445,12 +445,62 @@ public class TaulerTest {
 		T.abrirCasilla(0, 0);
     }
     @Test
-    public void DecisionCoverageEsquinaSuperiorIzquierda() {
+    public void TestPathCoverageEsquinaSuperiorIzquierda() {
 		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
 		T.abrirCasilla(0, 0);
 		// comprovamos que se ha expandido correctamente
 		assertEquals(T.getContadorCasillasAbiertas(), 6);
+    }
+    @Test
+    public void TestPathCoverageComprovarFila() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		// valores frontera
+		assertTrue(T.comprobarFila(1));
+		assertTrue(T.comprobarFila(8));
+		// valores límite
+		assertFalse(T.comprobarFila(-1));
+		assertFalse(T.comprobarFila(9));
+    }
+    @Test
+    public void TestPathCoverageComprovarColumna() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		// valores frontera
+		assertTrue(T.comprobarColumna(1));
+		assertTrue(T.comprobarColumna(8));
+		// valores límite
+		assertFalse(T.comprobarColumna(-1));
+		assertFalse(T.comprobarColumna(9));
+    }
+    
+    @Test
+    public void TestPathCoverageComprovarDificultad() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		// valores frontera
+		assertTrue(T.comprobarDificultad(0));
+		assertTrue(T.comprobarDificultad(2));
+		// valores límite
+		assertFalse(T.comprobarDificultad(-1));
+		assertFalse(T.comprobarDificultad(4));
+    }
+    
+    @Test
+    public void TestPathCoverageComprovarAccion() {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		Tauler T = new Tauler(rand);
+		T.generarTauler(0);
+		// valores frontera
+		assertTrue(T.comprobarAccion(1));
+		assertTrue(T.comprobarAccion(2));
+		// valores límite
+		assertFalse(T.comprobarAccion(-1));
+		assertFalse(T.comprobarAccion(4));
     }
 }
