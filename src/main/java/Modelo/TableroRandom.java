@@ -2,13 +2,13 @@ package Modelo;
 
 import java.util.Random;
 
+// clase que se encarga de colocar las minas en el tablero de forma aleatoria 
 public class TableroRandom implements GeneradorTablero{ 
 	
 	public Casella[][] generarMinas(int filas, int columnas, int minas){
 		
 		Casella[][] matriz = new Casella[filas][columnas];
         
-        //Aquest bucle hauria de anar fora potser
         for(int i = 0; i < filas; i++) {
         	for(int j = 0; j < columnas; j++) {
         		matriz[i][j] = new Casella();

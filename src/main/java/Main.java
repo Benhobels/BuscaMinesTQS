@@ -13,8 +13,8 @@ public class Main {
 		}
 		while(!P.FiPartida()) 
 		{
-			P.seleccionarTirada();
 			P.mostrarTablero();
+			P.seleccionarTirada();
 		}
 		
 	}

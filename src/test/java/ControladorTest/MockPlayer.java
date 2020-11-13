@@ -5,6 +5,7 @@ import Modelo.GeneradorTablero;
 import Modelo.TableroRandom;
 import Modelo.Tauler;
 
+// MockPlayer: mock que se encarga de simular la interacción del jugador (útil para el TDD)
 public class MockPlayer implements Partida {
 	
 	public Tauler TableroPartida;
@@ -39,7 +40,7 @@ public class MockPlayer implements Partida {
 		int[] tirada = new int[3];
 		tirada[0] = 16; // fila
 		tirada[1] = -1; // columna
-		tirada[2] = 1;
+		tirada[2] = 1; // accion
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
 	}
 	
@@ -47,7 +48,7 @@ public class MockPlayer implements Partida {
 		int[] tirada = new int[3];
 		tirada[0] = 3; // fila
 		tirada[1] = 6; // columna
-		tirada[2] = 2;
+		tirada[2] = 2; // accion
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
 	}
 	

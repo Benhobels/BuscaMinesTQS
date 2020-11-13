@@ -1,5 +1,6 @@
 package Modelo;
 
+// La clase Casella nos permite saber el estado de una determinada casilla dentro del tablero
 public class Casella {
 	
 	private int m_Valor;

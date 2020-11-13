@@ -5,6 +5,7 @@ import Modelo.TableroRandom;
 import Modelo.Tauler;
 import Vista.Interficie;
 
+// Interficie que se encarga de simular la interacción con el usuario, útil para el uso de los Mocks
 public interface Partida {
 	
 	public abstract void seleccionarDificultad();
@@ -22,13 +23,5 @@ public interface Partida {
 	public abstract boolean FiPartida();
 	
 	public abstract void mostrarTablero();
-	
-	// començarPartida --> que ha de cridar el crearTauler(dificultad esollida per usuari)
-	
-	// gestionarSeleccio --> que haura de cridar al comprovarFila, comprovarColumna, comprovarAccio
-	// ha de controlar ell les comporvacions de fila i tot aixo??
-	
-	// fiPartida --> que tingui el getter de la matriu jugador i busqui si s'ha destapar un 9
-	
 	
 }

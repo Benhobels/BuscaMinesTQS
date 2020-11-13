@@ -8,7 +8,7 @@ import Modelo.TableroRandom;
 import Modelo.Tauler;
 import Vista.Interficie;
 
-
+// clase que se encarga de controlar la interacción con el jugador
 public class RealPlayer implements Partida {
 	
 	private Interficie Pantalla;
@@ -66,10 +66,14 @@ public class RealPlayer implements Partida {
 				return;
 			}
 		}
-		
+	
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
-		LastRow = tirada[0] - 1;
-		LastCol = tirada[1] - 1;
+		if(tirada[0] < TableroPartida.getFiles()+2 &&  tirada[0] > 0) {
+			LastRow = tirada[0] - 1;
+		}
+		if(tirada[1] < TableroPartida.getColumnes()+2 &&  tirada[1] > 0) {
+			LastCol = tirada[1] - 1;
+		}
 	}
 		
 	

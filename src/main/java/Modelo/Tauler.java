@@ -9,19 +9,20 @@ public class Tauler {
 	private static GeneradorTablero m_Rand;
 	private int n_contadorCasillasAbiertas;
 	
-	/*
-	public Tauler()
+	// constructor de Tauler: el parámetro "r" permite el uso de los distintos mocks para el testing
+	public Tauler(GeneradorTablero r)
 	{
 		n_Columnas = 0;
 		n_Filas = 0;
 		n_Minas = 0;
 		Casella[][] m_Matriz = null;
 		Casella[][] m_MatrizJugador = null;
-		m_Rand = null;
-	}
-	NOTA: Constructor por defecto no útil debido al uso de los mocks
-	*/
+		m_Rand = r;
+		n_contadorCasillasAbiertas = 0;
+		
+	}	
 	
+	// getters:
 	public int getColumnes() {
 		return n_Columnas;
 	}
@@ -34,6 +35,41 @@ public class Tauler {
 		return n_Minas;
 	}
 	
+	// getter que devuelve el tablero con los valores de la partida
+	public Casella[][] getMatriu()
+	{
+		return m_Matriz;
+	}
+	
+	// getter que devuelve el tablero que ve el jugador
+	public Casella[][] getMatriuPlayer()
+	{
+		return m_MatrizJugador;
+	}
+	
+	public int getValorCasella(int fila, int columna) {
+		return m_Matriz[fila][columna].getValor();
+	}
+	
+	// getter que devuelve el numero de casillas abiertas por el jugador (sin contar minas)
+	public int getContadorCasillasAbiertas()
+	{
+		return n_contadorCasillasAbiertas;
+	}
+	
+	// getter que devuelve el valor de una casilla abierta por el usuario
+	public int getValorCasillaAbierta(int fila, int columna)
+	{
+		return m_MatrizJugador[fila][columna].getValor();
+	}
+	
+	// getter que devuelve si la casilla ha sido abierta por el jugador
+	public boolean getCasillaAbierta(int fila,int columna)
+	{
+		return m_MatrizJugador[fila][columna].getAbierta();
+	}
+	
+	// genera el tablero de la partida en función de la dificultad escogida
 	public void generarTauler(int dificultat)
 	{
 		switch(dificultat)
@@ -64,27 +100,15 @@ public class Tauler {
 		m_Matriz = new Casella[nFil][nCol];
 	}
 	
-	public Casella[][] getMatriu()
+	private void generarMatrizJugador(int nFil,int nCol)
 	{
-		return m_Matriz;
+		m_MatrizJugador = new Casella[nFil][nCol];
+		for(int i = 0; i < nFil; i++)
+			for(int j = 0; j < nCol; j++)
+				m_MatrizJugador[i][j] = new Casella();
 	}
 	
-	public Casella[][] getMatriuPlayer()
-	{
-		return m_MatrizJugador;
-	}
-	
-	public Tauler(GeneradorTablero r)
-	{
-		n_Columnas = 0;
-		n_Filas = 0;
-		n_Minas = 0;
-		Casella[][] m_Matriz = null;
-		Casella[][] m_MatrizJugador = null;
-		m_Rand = r;
-		n_contadorCasillasAbiertas = 0;
-		
-	}	
+	// colocarMinas(): se encarga de colocar las minas en el tablero a través del TableroRandom o de un mock
 	private void colocarMinas() {
 		m_Matriz = m_Rand.generarMinas(n_Filas, n_Columnas, n_Minas);
 		colocarEsquinas();
@@ -179,6 +203,7 @@ public class Tauler {
 		}
 	}
 	
+	// se encarga de asegurar que el valor de las minas sea 9
 	private void restaurarMinas() {
 		for(int i = 0; i < n_Filas; i++) {
 			for(int j = 0; j < n_Columnas; j++) {
@@ -187,18 +212,6 @@ public class Tauler {
 				}
 			}
 		}
-	}
-	
-	public int getValorCasella(int fila, int columna) {
-		return m_Matriz[fila][columna].getValor();
-	}
-	
-	private void generarMatrizJugador(int nFil,int nCol)
-	{
-		m_MatrizJugador = new Casella[nFil][nCol];
-		for(int i = 0; i < nFil; i++)
-			for(int j = 0; j < nCol; j++)
-				m_MatrizJugador[i][j] = new Casella();
 	}
 	
 	public void abrirCasilla(int fila, int col)
@@ -221,7 +234,7 @@ public class Tauler {
 		{
 			if((fila == 0 || fila == n_Filas - 1 ) && (col == 0 || col == n_Columnas -1))
 			{
-				//si se trata de una esquina
+				// si se trata de una esquina
 				m_MatrizJugador[fila][col].setAbierta(true);
 				n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 				abrirEsquina(fila,col);
@@ -230,21 +243,20 @@ public class Tauler {
 			{
 				if(fila == 0 || fila == n_Filas -1 || col == 0 || col == n_Columnas -1)
 				{
-					//si se trata de un borde
+					// si se trata de un borde
 					m_MatrizJugador[fila][col].setAbierta(true);
 					n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 					abrirBorde(fila,col);
 				}
 				else
 				{
-					//si se trata de una casilla central
+					// si se trata de una casilla central
 					m_MatrizJugador[fila][col].setAbierta(true);
 					n_contadorCasillasAbiertas = n_contadorCasillasAbiertas + 1;
 					abrirCentro(fila,col);
 				}
 			}			
 		}	
-		m_MatrizJugador[fila][col].setValor(0);
 	}
 	
 	private void abrirEsquina(int fila, int col)
@@ -254,14 +266,14 @@ public class Tauler {
 		{
 			if(col == n_Columnas -1 ) 
 			{
-				//esquina superior derecha
+				// esquina superior derecha
 				abrirCasilla(fila, col -1);
 				abrirCasilla(fila+1, col);
 				abrirCasilla(fila+1, col-1);
 			}
 			else 
 			{
-				//esquina superior izquierda
+				// esquina superior izquierda
 				abrirCasilla(fila, col+1);
 				abrirCasilla(fila+1, col);
 				abrirCasilla(fila+1, col+1);
@@ -271,14 +283,14 @@ public class Tauler {
 		{
 			if(col == n_Columnas -1)
 			{
-				//esquina inferior derecha
+				// esquina inferior derecha
 				abrirCasilla(fila-1, col);
 				abrirCasilla(fila-1, col-1);
 				abrirCasilla(fila, col-1);
 			}
 			else
 			{
-				//esquina inferior izquierda
+				// esquina inferior izquierda
 				abrirCasilla(fila-1, col);
 				abrirCasilla(fila-1, col+1);
 				abrirCasilla(fila, col+1);
@@ -291,7 +303,7 @@ public class Tauler {
 		// se encarga de abrir las casillas que rodean una casilla de algun borde del tablero
 		if(fila == 0)
 		{
-			//borde superior
+			// borde superior
 			abrirCasilla(fila, col +1); 
 			abrirCasilla(fila, col -1); 
 			abrirCasilla(fila+1, col +1);
@@ -300,7 +312,7 @@ public class Tauler {
 		}
 		else if(col == n_Columnas -1)
 		{
-			//borde derecha
+			// borde derecha
 			abrirCasilla(fila -1, col);
 			abrirCasilla(fila -1, col -1);
 			abrirCasilla(fila, col -1);
@@ -309,7 +321,7 @@ public class Tauler {
 		}
 		else if(fila == n_Filas -1)
 		{
-			//borde inferior
+			// borde inferior
 			abrirCasilla(fila, col +1);
 			abrirCasilla(fila, col -1);
 			abrirCasilla(fila -1, col +1);
@@ -318,23 +330,13 @@ public class Tauler {
 		}
 		else
 		{
-			//borde izquierda
+			// borde izquierda
 			abrirCasilla(fila -1, col);
 			abrirCasilla(fila +1, col);
 			abrirCasilla(fila +1, col+1);
 			abrirCasilla(fila, col+1);
 			abrirCasilla(fila -1, col+1);
 		}									
-	}
-	
-	public int getValorCasillaAbierta(int fila, int columna)
-	{
-		return m_MatrizJugador[fila][columna].getValor();
-	}
-	
-	public boolean getCasillaAbierta(int fila,int columna)
-	{
-		return m_MatrizJugador[fila][columna].getAbierta();
 	}
 	
 	private void abrirCentro(int fila, int col)
@@ -350,11 +352,19 @@ public class Tauler {
 		abrirCasilla(fila+1, col+1);
 	}
 	
+	// comporbarX(): se encargan de comprovar que los valores introducidos por el usuario sean válidos
 	public boolean comprobarDificultad(int dif)
 	{
 		if(dif > 2 || dif < 0)
 			return false;
 		return true;
+	}
+	
+	public void comprobarCreacion(int dificultad)
+	{
+		// se encarga de generar el tablero en función de la dificultad escogida
+		if(comprobarDificultad(dificultad))
+			generarTauler(dificultad);	
 	}
 	
 	public boolean comprobarFila(int fila)
@@ -373,29 +383,29 @@ public class Tauler {
 	
 	public boolean comprobarAccion(int accion)
 	{
-		if(accion == 1 || accion == 2) // 1 es abrir / 2 es colocar/quitar bandera
+		// 1 = abrir casilla, 2 = colocar/quitar bandera
+		if(accion == 1 || accion == 2) 
 			return true;
 		return false;
 	}
 	
+	// se encarga de llevar a cabo la tirada del jugador
 	public void tiradaJugador(int fila, int columna, int accion)
 	{
-		if(comprobarFila(fila) && comprobarColumna(columna) && comprobarAccion(accion))
-			//restamos 1 porque el jugdor puede escoger a partir de 1 y no de 0
+		if(comprobarFila(fila) && comprobarColumna(columna) && comprobarAccion(accion)) {
+			//restamos 1 porque el jugdor puede escoger a partir de 1 (y no de 0)
 			if(accion == 1)
 				abrirCasilla(fila-1,columna-1);
-			else
-				if(!m_MatrizJugador[fila-1][columna-1].getBandera())
+			else {
+				// corresponde a poner/quitar una bandera
+				if(!m_MatrizJugador[fila-1][columna-1].getBandera() && !m_MatrizJugador[fila-1][columna-1].getBandera())
 					colocarBandera(fila-1,columna-1);
 				else
-					quitarBandera(fila-1,columna-1);				
+					quitarBandera(fila-1,columna-1);
+			}
+		}
 	}
 	
-	public void comprobarCreacion(int dificultad)
-	{
-		if(comprobarDificultad(dificultad))
-			generarTauler(dificultad);	
-	}
 	
 	private void colocarBandera(int fila,int columna)
 	{
@@ -406,9 +416,5 @@ public class Tauler {
 	{
 		m_MatrizJugador[fila][columna].setBandera(false);
 	}
-	
-	public int getContadorCasillasAbiertas()
-	{
-		return n_contadorCasillasAbiertas;
-	}
+
 }

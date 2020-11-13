@@ -3,7 +3,7 @@ package ModeloTest;
 import Modelo.Casella;
 import Modelo.GeneradorTablero;
 
-// mock utilizado para realizar el Path Coverage y Decision Coverage de los bordes restantes que no se han comprovado con TDD
+//MockBordesCoverage: mock utilizado para realizarStatement Coverage de los bordes restantes (que no se han comprovado con TDD)
 public class MockBordesCoverage implements GeneradorTablero{
 	public Casella[][] generarMinas(int filas, int columnas, int minas) {
         Casella[][] matriz = new Casella[filas][columnas];

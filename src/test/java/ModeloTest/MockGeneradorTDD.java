@@ -3,12 +3,12 @@ package ModeloTest;
 import Modelo.Casella;
 import Modelo.GeneradorTablero;
 
+//MockGeneradorTDD = mock utilizado para la estrategia TDD
 public class MockGeneradorTDD implements GeneradorTablero{
     
 	public Casella[][] generarMinas(int filas, int columnas, int minas) {
         Casella[][] matriz = new Casella[filas][columnas];
         
-        //Aquest bucle hauria de anar fora potser
         for(int i = 0; i < filas; i++) {
         	for(int j = 0; j < columnas; j++) {
         		matriz[i][j] = new Casella();
