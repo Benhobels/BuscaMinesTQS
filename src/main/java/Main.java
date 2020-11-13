@@ -11,12 +11,12 @@ public class Main {
 		{
 			P.seleccionarDificultad();
 		}
+		P.mostrarTablero();
 		while(!P.FiPartida()) 
 		{
-			P.mostrarTablero();
 			P.seleccionarTirada();
+			P.mostrarTablero();
 		}
-		
 	}
 
 	

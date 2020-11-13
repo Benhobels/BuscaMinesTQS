@@ -12,7 +12,7 @@ import Modelo.Tauler;
 
 public class PartidaTest {
 
-		// 1- TDD: test que se encarga de comprobar una dificultad válida con el modelo
+		// 1- Test que se encarga de comprobar una dificultad válida con el modelo
 		@Test
 		public void testSelectDificultadValida() {
 			Partida P = new MockPlayer();
@@ -23,7 +23,7 @@ public class PartidaTest {
 			assertEquals(T.getNumMines(),40);
 		}
 		
-		// 2- TDD: test que se encarga de abrir una casilla válida con el modelo
+		// 2- Partición equivalente: Test que se encarga de abrir una casilla válida con el modelo
 		@Test
 		public void testAbrirCasilla() {
 			Partida p = new MockPlayer();

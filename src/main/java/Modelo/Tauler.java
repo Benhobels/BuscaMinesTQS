@@ -399,7 +399,7 @@ public class Tauler {
 			else {
 				// corresponde a poner/quitar una bandera
 				if(!m_MatrizJugador[fila-1][columna-1].getBandera() && !m_MatrizJugador[fila-1][columna-1].getBandera())
-					colocarBandera(fila-1,columna-1);
+						colocarBandera(fila-1,columna-1);
 				else
 					quitarBandera(fila-1,columna-1);
 			}

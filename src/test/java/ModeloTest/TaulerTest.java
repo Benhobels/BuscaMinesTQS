@@ -95,7 +95,7 @@ public class TaulerTest {
 		assertEquals(T.getValorCasella(2, 4), 2);
 	}
 	
-	// 6- TDD: test para abrir la esquina superior derecha (y su respectiva expansión)
+	// 6- TDD + Valor Frontera: test para abrir la esquina superior derecha (y su respectiva expansión)
 	@Test
 	public void testAbrirEsquinaSuperiorDerecha() {
 		GeneradorTablero rand = new MockGeneradorTDD();
@@ -113,7 +113,7 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(0, 4));
 	}
 	
-	// 7- TDD: test para abrir la esquina inferior derecha (no se debe expandir!)
+	// 7- TDD + Valor frontera: test para abrir la esquina inferior derecha (no se debe expandir!)
 	@Test
 	public void testAbrirEsquinaInferiorDerecha() {
 		GeneradorTablero rand = new MockGeneradorTDD();
@@ -128,7 +128,7 @@ public class TaulerTest {
 		assertFalse(T.getCasillaAbierta(6, 6));
 	}
 	
-	// 8- TDD: test para abrir la esquina superior izquierda (y su respectiva expansión)
+	// 8- TDD + Valor frontera: test para abrir la esquina superior izquierda (y su respectiva expansión)
 	@Test
 	public void testAbrirEsquinaSuperiorIzquierda() {
 		GeneradorTablero rand = new MockGeneradorTDD();
@@ -179,9 +179,9 @@ public class TaulerTest {
 	
 	// MockBordesCoverage: este mock constará de minas en las esquinas y nos permitirá expandir los bordes restantes
 	
-	// 10- Decision Coverage + Condition Coverage: test para abrir una casilla del borde derecho (y comprobar su expansión)
+	// 10- Decision Coverage + Condition Coverage + Partición Equivalente: test para abrir una casilla del borde derecho (y comprobar su expansión)
 	@Test
-	public void TestPathCoverageBordeDerecha() {
+	public void TestStatementCoverageBordeDerecha() {
 		GeneradorTablero rand = new MockBordesCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -209,9 +209,9 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(2,3), 0);
 	}
 	
-	// 11- Decision Coverage + Condition Coverage: test para abrir casilla del borde inferior (y comprobar su expansión)
+	// 11- Decision Coverage + Condition Coverage + Partición Equivalente: test para abrir casilla del borde inferior (y comprobar su expansión)
 	@Test 
-	public void TestPathCoverageBordeInferior() {
+	public void TestStatementCoverageBordeInferior() {
 		GeneradorTablero rand = new MockBordesCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -234,9 +234,9 @@ public class TaulerTest {
 	
 	// MockEsquinasCoverage: este mock no constará de minas en las esquinas y nos permitirá expandir a través de estas
 	
-	// 12- Decision Coverage + Condition Coverage: test para abrir esquina inferior derecha (y comprobar su expansión) 
+	// 12- Decision Coverage + Condition Coverage + Valor frontera: test para abrir esquina inferior derecha (y comprobar su expansión) 
 	@Test
-	public void TestDecisionCoverageEsquinaInferiorDerecha() {
+	public void TestStatementCoverageEsquinaInferiorDerecha() {
 		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -258,9 +258,9 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(3,7), 0);
 	}
 	
-	// 13- Decision Coverage + Condition Coverage: test para abrir esquina inferior izquierda (y comprobar su expansión)
+	// 13- Decision Coverage + Condition Coverage + Valor frontera: test para abrir esquina inferior izquierda (y comprobar su expansión)
 	@Test
-	public void TestDecisionCoverageEsquinaInferiorIzquierda() {
+	public void TestStatementCoverageEsquinaInferiorIzquierda() {
 		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -275,7 +275,7 @@ public class TaulerTest {
 	
 	// 14- Decision Coverage + Condition Coverage: test para abrir esquina superior izquierda (y comprobar su expansión)
 	@Test
-	public void TestDecisionCoverageEsquinaSuperiorIzquierda() {
+	public void TestStatementCoverageEsquinaSuperiorIzquierda() {
 		GeneradorTablero rand = new MockEsquinasCoverage();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -352,9 +352,11 @@ public class TaulerTest {
 
     }
     
+    // Test para comprovar las acciones del jugador, usando TDD:
+    
     // 18- TDD + Partición equivalente: test para comprovar una dificultad válida introducida por el usuario
     @Test
-    public void TestComprovarDificultadValida() {
+    public void TestComprobarDificultadValida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         assertTrue(T.comprobarDificultad(0));
@@ -362,15 +364,15 @@ public class TaulerTest {
     
     // 19- Decision Coverage + Condition Coverage + Valor límite: test para comprobar una dificultad inválida introducida por el usuario
     @Test
-    public void TestComprovarDificultadInvalida() {
+    public void TestComprobarDificultadInvalida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         assertFalse(T.comprobarDificultad(5));
     }
     
-    // 20- TDD + Valor frontera: test para comprobar una fila válida introducida por el usuario
+    // 20- TDD + Valores Frontera: test para comprobar una fila válida introducida por el usuario
     @Test
-    public void TestComprovarFilaValida() {
+    public void TestComprobarFilaValida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         T.generarTauler(0);
@@ -379,7 +381,7 @@ public class TaulerTest {
     
     // 21- Decision Coverage + Condition Coverage + Valor Limite: test para comprobar una fila inválida introducida por el usuario
     @Test
-    public void TestComprovarFilaInvalida() {
+    public void TestComprobarFilaInvalida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         T.generarTauler(0);
@@ -388,7 +390,7 @@ public class TaulerTest {
     
     // 22- TDD + Partición equivalente: test para comprovar una columna válida introducida por el usuario
     @Test
-    public void TestComprovarColumnaValida() {
+    public void TestComprobarColumnaValida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         T.generarTauler(0);
@@ -397,7 +399,7 @@ public class TaulerTest {
     
     // 23- Decision Coverage + Condition Coverage + Valor límite: test para comprovar una columna inválida introducida por el usuario
     @Test
-    public void TestComprovarColumnaInvalida() {
+    public void TestComprobarColumnaInvalida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         T.generarTauler(0);
@@ -406,7 +408,7 @@ public class TaulerTest {
     
     // 24- TDD + Partición Equivalente: test para comprovar una acción válida introducida por el usuario
     @Test
-    public void TestComprovarAccionValida() {
+    public void TestComprobarAccionValida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         assertTrue(T.comprobarAccion(2));
@@ -414,27 +416,27 @@ public class TaulerTest {
     
     // 25- Decision Coverage + Condition Coverage + Valor límite: test para comprovar una acción inválida introducida por el usuario
     @Test
-    public void TestComprovarAccionInvalida() {
+    public void TestComprobarAccionInvalida() {
     	GeneradorTablero rand = new TableroRandom();
         Tauler T = new Tauler(rand);
         T.generarTauler(0);
         assertFalse(T.comprobarAccion(0));
     }
     
-    // 26- TDD: test para comprobar que se ha expandido correctamente el tablero
+    // 26- TDD + Valor frontera: test para comprobar que se ha expandido correctamente el tablero
     @Test
-    public void TestStatementCoverageEsquinaSuperiorIzquierda() {
-		GeneradorTablero rand = new MockEsquinasCoverage();
+    public void TestComprobarCasillasAbiertas() {
+		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
-		T.abrirCasilla(0, 0);
+		T.abrirCasilla(0, 7);
 		// comprobamos que se ha expandido correctamente
 		assertEquals(T.getContadorCasillasAbiertas(), 6);
     }
     
-    // 27- Decision Coverage + Condition Coverage: test para comprobar todas las condiciones de la función comporbarFila()
+    // 27- Decision Coverage + Condition Coverage + Valores Frontera + Valores Límites: test para comprobar todas las condiciones de la función comporbarFila()
     @Test
-    public void TestStatementCoverageComprovarFila() {
+    public void TestStatementCoverageComprobarFila() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -446,9 +448,9 @@ public class TaulerTest {
 		assertFalse(T.comprobarFila(9));
     }
     
-    // 28- Decision Coverage + Condition Coverage: test para comprobar todas las condiciones de la función comporbarColumna()
+    // 28- Decision Coverage + Condition Coverage + Valores límite + Valores frontera: test para comprobar todas las condiciones de la función comporbarColumna()
     @Test
-    public void TestStatementCoverageComprovarColumna() {
+    public void TestStatementCoverageComprobarColumna() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -460,9 +462,9 @@ public class TaulerTest {
 		assertFalse(T.comprobarColumna(9));
     }
     
-    // 29- Decision Coverage + Condition Coverage: test para comprobar todas las condiciones de la función comporbarDificultad()
+    // 29- Decision Coverage + Condition Coverage + Valores Frontera + Valores límite: test para comprobar todas las condiciones de la función comporbarDificultad()
     @Test
-    public void TestStatementCoverageComprovarDificultad() {
+    public void TestStatementCoverageComprobarDificultad() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -474,9 +476,9 @@ public class TaulerTest {
 		assertFalse(T.comprobarDificultad(4));
     }
     
-    // 30- Decision Coverage + Condition Coverage: test para comprobar todas las condiciones de la función comporbarAccion()
+    // 30- Decision Coverage + Condition Coverage + Valores Frontera + Valores límite: test para comprobar todas las condiciones de la función comporbarAccion()
     @Test
-    public void TestPathCoverageComprovarAccion() {
+    public void TestStatementCoverageComprobarAccion() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.generarTauler(0);
@@ -485,12 +487,12 @@ public class TaulerTest {
 		assertTrue(T.comprobarAccion(2));
 		// valores límite
 		assertFalse(T.comprobarAccion(-1));
-		assertFalse(T.comprobarAccion(4));
+		assertFalse(T.comprobarAccion(3));
     }
     
-    // 31- TDD: test para comprobar la función comporbarCreacion()
+    // 31- TDD + Partición Equivalente: test para comprobar la función comporbarCreacion() que se encarga de crear el tablero
     @Test
-    public void TestComprovarCreacion() {
+    public void TestComprobarCreacion() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.comprobarCreacion(0);
@@ -503,7 +505,7 @@ public class TaulerTest {
     
     // 32- Decision Coverage + Condition Coverage +  Valor límite: test para comprobar todas las condiciones de la función comporbarCreacion()
     @Test
-    public void TestPathCoverageComprovarCreacionInvalida() {
+    public void TestPathCoverageComprobarCreacionInvalida() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.comprobarCreacion(4);
@@ -559,7 +561,7 @@ public class TaulerTest {
 		assertEquals(T.getContadorCasillasAbiertas(), 0);
     }
     
-    // 35- Decision Coverage + Condition Coverage + Particion Equivalente: test que comprueba que no es posible poner una bandera en una casilla abierta
+    // 36- Decision Coverage + Condition Coverage + Particion Equivalente: test que comprueba que no es posible poner una bandera en una casilla abierta
     @Test
     public void TestStatementCoverageTiradaBandera() {
 		GeneradorTablero rand = new MockGeneradorTDD();
