@@ -273,7 +273,7 @@ public class TaulerTest {
 		assertEquals(T.getValorCasillaAbierta(7,1), 1);
 	}
 	
-	// 14- Decision Coverage + Condition Coverage: test para abrir esquina superior izquierda (y comprobar su expansión)
+	// 14- Decision Coverage + Condition Coverage + Valor Frontera: test para abrir esquina superior izquierda (y comprobar su expansión)
 	@Test
 	public void TestStatementCoverageEsquinaSuperiorIzquierda() {
 		GeneradorTablero rand = new MockEsquinasCoverage();
@@ -515,9 +515,9 @@ public class TaulerTest {
 		assertEquals(T.getNumMines(), 0);
     }
     
-    // 33- TDD: test para comprobar el uso de las banderas (poner + quitar)
+    // 33- TDD + Partición Equivalente: test para comprobar el uso de las banderas (poner + quitar)
     @Test
-    public void TestPathCoverageComprovarBandera() {
+    public void TestComprovarBandera() {
 		GeneradorTablero rand = new MockGeneradorTDD();
 		Tauler T = new Tauler(rand);
 		T.comprobarCreacion(0);
@@ -531,7 +531,7 @@ public class TaulerTest {
 		assertFalse(MatrizJugador[0][0].getBandera());
     }
     
-    // 34- Decision Coverage + Condition Coverage: test para comprobar posibles tiradas del jugador
+    // 34- Decision Coverage + Condition Coverage + Valores frontera + Valores límite: test para comprobar posibles tiradas del jugador
     @Test
     public void TestStatementCoverageTiradaJugador() {
 		GeneradorTablero rand = new MockGeneradorTDD();
