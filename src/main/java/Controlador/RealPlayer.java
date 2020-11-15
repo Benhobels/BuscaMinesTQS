@@ -51,22 +51,27 @@ public class RealPlayer implements Partida {
 	
 	public void seleccionarTirada() {
 		int[] tirada = new int[3];
-		System.out.println ("Introducir tirada: fila/columna/accion \n");
-		System.out.println ("Accion: 1 = Abrir casilla / 2 = Bandera / 2 en casilla con bandera = Quitar bandera \n");
 		
 		String[] comandos = new String[3];
 		Scanner comando = new Scanner (System.in);
 		
-		for (int i = 0; i < 3; i++)
-		{
-			comandos[i] = comando.nextLine();
+		System.out.println("Introduce la fila: \n");
+		comandos[0] = comando.nextLine();
+		System.out.println("Introduce la columna: \n");
+		comandos[1] = comando.nextLine();
+		System.out.println("Introduce la accion: \n");
+		System.out.println ("Accion: 1 = Abrir casilla / 2 = Bandera / 2 en casilla con bandera = Quitar bandera \n");
+		comandos[2] = comando.nextLine();
+		
+		for(int i = 0; i < 3; i++) {
 			try {
-			  tirada[i] = Integer.parseInt(comandos[i]);
-			} catch (NumberFormatException ex){
-				return;
-			}
+				  tirada[i] = Integer.parseInt(comandos[i]);
+				} catch (NumberFormatException ex){
+					System.out.println("Valor introducido inválido! \n");
+					return;
+				}
 		}
-	
+		
 		TableroPartida.tiradaJugador(tirada[0],tirada[1],tirada[2]);
 		if(tirada[0] < TableroPartida.getFiles()+2 &&  tirada[0] > 0) {
 			LastRow = tirada[0] - 1;
