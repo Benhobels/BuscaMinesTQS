@@ -1,11 +1,13 @@
 package Controlador;
 
 import java.util.Scanner;
-import Controlador.Partida;
+
 import Modelo.Casella;
 import Modelo.GeneradorTablero;
-import Modelo.TableroRandom;
 import Modelo.Tauler;
+import ModeloTest.MockGeneradorTDD;
+import ScannerMock.IScanner;
+import ScannerMock.ScannerMock;
 import Vista.Interficie;
 
 // clase que se encarga de controlar la interacción con el jugador
@@ -17,8 +19,17 @@ public class RealPlayer implements Partida {
 	private int LastRow = 0;
 	private int LastCol = 0;
 	
+	private IScanner seleccion;
+	
+	public RealPlayer(IScanner sc) {
+		GeneradorTablero rand = new MockGeneradorTDD();
+		TableroPartida = new Tauler(rand);
+		Pantalla = new Interficie();
+		this.seleccion = sc;
+	}
+	
 	public RealPlayer() {
-		GeneradorTablero rand = new TableroRandom();
+		GeneradorTablero rand = new MockGeneradorTDD();
 		TableroPartida = new Tauler(rand);
 		Pantalla = new Interficie();
 	}
@@ -28,7 +39,6 @@ public class RealPlayer implements Partida {
 		System.out.println ("Introducir dificultad: \n");
 		System.out.println ("0 = Facil / 1 = Normal / 2 = Dificil \n");
 		String dificultad = "";
-		Scanner seleccion = new Scanner (System.in);
 		dificultad = seleccion.nextLine();
 		int dif = 0;
 		try {
@@ -53,15 +63,14 @@ public class RealPlayer implements Partida {
 		int[] tirada = new int[3];
 		
 		String[] comandos = new String[3];
-		Scanner comando = new Scanner (System.in);
 		
 		System.out.println("Introduce la fila: \n");
-		comandos[0] = comando.nextLine();
+		comandos[0] = seleccion.nextLine();
 		System.out.println("Introduce la columna: \n");
-		comandos[1] = comando.nextLine();
+		comandos[1] = seleccion.nextLine();
 		System.out.println("Introduce la accion: \n");
 		System.out.println ("Accion: 1 = Abrir casilla / 2 = Bandera / 2 en casilla con bandera = Quitar bandera \n");
-		comandos[2] = comando.nextLine();
+		comandos[2] = seleccion.nextLine();
 		
 		for(int i = 0; i < 3; i++) {
 			try {

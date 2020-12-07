@@ -1,11 +1,15 @@
 import Controlador.Partida;
 import Controlador.RealPlayer;
+import ScannerMock.IScanner;
+import ScannerMock.RealScanner;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		Partida P = new RealPlayer();
+		RealScanner sc = new RealScanner();
+		
+		Partida P = new RealPlayer(sc);
 		
 		while(P.getTablero().getFiles() == 0 && P.getTablero().getColumnes()==0)
 		{
