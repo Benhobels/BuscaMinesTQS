@@ -36,7 +36,7 @@ public class AutomatedTest {
 		sc.addLine(col);
 		sc.addLine("2");
 	}
-	//@Test
+	@Test
 	public void ganarPartida() {
 		ScannerMock sc = new ScannerMock();
 		Partida p = new RealPlayer(sc);
@@ -101,6 +101,8 @@ public class AutomatedTest {
 		abrirCasilla(sc, "4", "8");
 		
 		mostrarPartida(p);
+
+		assertTrue(p.FiPartida());
 		
 	}
 	
@@ -154,9 +156,80 @@ public class AutomatedTest {
 		abrirCasilla(sc, "8", "7");
 		
 		mostrarPartida(p);
+
+		assertTrue(p.FiPartida());
 		
 	}
 	
+	@Test
+	public void ganarPartidaSinBanderas() {
+		ScannerMock sc = new ScannerMock();
+		Partida p = new RealPlayer(sc);
+		//seleccionar dificultad
+		sc.addLine("0");
+		
+		abrirCasilla(sc, "3", "3");
+		abrirCasilla(sc, "7", "1");
+		abrirCasilla(sc, "8", "1");		
+		abrirCasilla(sc, "8", "2");
+		abrirCasilla(sc, "6", "3");		
+		abrirCasilla(sc, "7", "3");		
+		abrirCasilla(sc, "8", "3");		
+		abrirCasilla(sc, "7", "4");		
+		abrirCasilla(sc, "6", "4");		
+		abrirCasilla(sc, "8", "4");		
+		abrirCasilla(sc, "5", "4");
+		abrirCasilla(sc, "3", "5");		
+		abrirCasilla(sc, "1", "8");		
+		abrirCasilla(sc, "8", "5");		
+		abrirCasilla(sc, "4", "5");		
+		abrirCasilla(sc, "5", "5");		
+		abrirCasilla(sc, "6", "5");
+		abrirCasilla(sc, "6", "6");		
+		abrirCasilla(sc, "7", "6");		
+		abrirCasilla(sc, "8", "6");		
+		abrirCasilla(sc, "6", "7");		
+		abrirCasilla(sc, "6", "8");		
+		abrirCasilla(sc, "7", "8");		
+		abrirCasilla(sc, "8", "8");		
+		abrirCasilla(sc, "7", "7");
+		abrirCasilla(sc, "5", "6");
+		abrirCasilla(sc, "5", "7");	
+		abrirCasilla(sc, "3", "6");
+		abrirCasilla(sc, "3", "7");		
+		abrirCasilla(sc, "4", "7");
+		abrirCasilla(sc, "4", "8");
+		
+		mostrarPartida(p);
+		
+		assertTrue(p.FiPartida());
+	}
 	
-
+	@Test
+	public void perderPartidaSinBanderas() {
+		ScannerMock sc = new ScannerMock();
+		Partida p = new RealPlayer(sc);
+		//seleccionar dificultad
+		sc.addLine("0");
+		
+		abrirCasilla(sc, "3", "3");	
+		abrirCasilla(sc, "7", "1");
+		abrirCasilla(sc, "8", "1");		
+		abrirCasilla(sc, "8", "2");	
+		abrirCasilla(sc, "6", "3");		
+		abrirCasilla(sc, "7", "3");		
+		abrirCasilla(sc, "8", "3");		
+		abrirCasilla(sc, "7", "4");		
+		abrirCasilla(sc, "6", "4");		
+		abrirCasilla(sc, "8", "4");		
+		abrirCasilla(sc, "5", "4");
+		abrirCasilla(sc, "3", "5");		
+		abrirCasilla(sc, "1", "8");	
+		abrirCasilla(sc, "7", "5");
+		
+		
+		mostrarPartida(p);
+		
+		assertTrue(p.FiPartida());
+	}
 }
